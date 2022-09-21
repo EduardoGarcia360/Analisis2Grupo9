@@ -1,0 +1,692 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="analisis2_2022Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categoria_Insumo">
+          <Key>
+            <PropertyRef Name="id_categoria_insumo" />
+          </Key>
+          <Property Name="id_categoria_insumo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo" Type="varchar" MaxLength="255" />
+          <Property Name="nombre" Type="varchar" MaxLength="255" />
+          <Property Name="estado" Type="int" />
+        </EntityType>
+        <EntityType Name="Categoria_Ticket">
+          <Key>
+            <PropertyRef Name="id_categoria_ticket" />
+          </Key>
+          <Property Name="id_categoria_ticket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo" Type="varchar" MaxLength="255" />
+          <Property Name="nombre" Type="varchar" MaxLength="255" />
+          <Property Name="estado" Type="int" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="id_empleado" />
+          </Key>
+          <Property Name="id_empleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_puesto" Type="int" />
+          <Property Name="codigo" Type="varchar" MaxLength="255" />
+          <Property Name="nombre" Type="varchar" MaxLength="255" />
+          <Property Name="apellido" Type="varchar" MaxLength="255" />
+          <Property Name="usuario" Type="varchar" MaxLength="255" />
+          <Property Name="password" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Estado_Ticket">
+          <Key>
+            <PropertyRef Name="id_estado_ticket" />
+          </Key>
+          <Property Name="id_estado_ticket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="255" />
+          <Property Name="estado" Type="int" />
+        </EntityType>
+        <EntityType Name="Insumo">
+          <Key>
+            <PropertyRef Name="id_insumo" />
+          </Key>
+          <Property Name="id_insumo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_categoria_insumo" Type="int" />
+          <Property Name="codigo" Type="varchar" MaxLength="255" />
+          <Property Name="descripcion" Type="varchar" MaxLength="255" />
+          <Property Name="cantidad" Type="int" />
+          <Property Name="estado" Type="int" />
+        </EntityType>
+        <EntityType Name="Puesto">
+          <Key>
+            <PropertyRef Name="id_puesto" />
+          </Key>
+          <Property Name="id_puesto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo" Type="varchar" MaxLength="255" />
+          <Property Name="nombre" Type="varchar" MaxLength="255" />
+          <Property Name="estado" Type="int" />
+        </EntityType>
+        <EntityType Name="Requisicion_Interna">
+          <Key>
+            <PropertyRef Name="id_requisicion" />
+          </Key>
+          <Property Name="id_requisicion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_ticket_seguimiento" Type="int" />
+          <Property Name="id_insumo" Type="int" />
+          <Property Name="cantidad" Type="int" />
+          <Property Name="fecha_solicitud" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="id_ticket" />
+          </Key>
+          <Property Name="id_ticket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_empleado_solicitud" Type="int" />
+          <Property Name="id_empleado_asignacion" Type="int" />
+          <Property Name="id_categoria_ticket" Type="int" />
+          <Property Name="id_estado_ticket" Type="int" />
+          <Property Name="fecha_solicitud" Type="datetime" />
+          <Property Name="titulo" Type="varchar" MaxLength="100" />
+          <Property Name="descripcion" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Ticket_Seguimiento">
+          <Key>
+            <PropertyRef Name="id_ticket_seguimiento" />
+          </Key>
+          <Property Name="id_ticket_seguimiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_empleado" Type="int" />
+          <Property Name="id_ticket" Type="int" />
+          <Property Name="fecha_seguimiento" Type="datetime" />
+          <Property Name="descripcion_seguimiento" Type="varchar" MaxLength="255" />
+          <Property Name="fecha_inicio_seguimiento" Type="datetime" />
+          <Property Name="fecha_fin_seguimiento" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_empleadopuesto">
+          <End Role="Puesto" Type="Self.Puesto" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Puesto">
+              <PropertyRef Name="id_puesto" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="id_puesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_insumocatinsumo">
+          <End Role="Categoria_Insumo" Type="Self.Categoria_Insumo" Multiplicity="0..1" />
+          <End Role="Insumo" Type="Self.Insumo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria_Insumo">
+              <PropertyRef Name="id_categoria_insumo" />
+            </Principal>
+            <Dependent Role="Insumo">
+              <PropertyRef Name="id_categoria_insumo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_reqintinsumo">
+          <End Role="Insumo" Type="Self.Insumo" Multiplicity="0..1" />
+          <End Role="Requisicion_Interna" Type="Self.Requisicion_Interna" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Insumo">
+              <PropertyRef Name="id_insumo" />
+            </Principal>
+            <Dependent Role="Requisicion_Interna">
+              <PropertyRef Name="id_insumo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_reqintticket">
+          <End Role="Ticket_Seguimiento" Type="Self.Ticket_Seguimiento" Multiplicity="0..1" />
+          <End Role="Requisicion_Interna" Type="Self.Requisicion_Interna" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket_Seguimiento">
+              <PropertyRef Name="id_ticket_seguimiento" />
+            </Principal>
+            <Dependent Role="Requisicion_Interna">
+              <PropertyRef Name="id_ticket_seguimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ticketcatticket">
+          <End Role="Categoria_Ticket" Type="Self.Categoria_Ticket" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria_Ticket">
+              <PropertyRef Name="id_categoria_ticket" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="id_categoria_ticket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ticketempasig">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="id_empleado_asignacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ticketempsoli">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="id_empleado_solicitud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ticketestadoticket">
+          <End Role="Estado_Ticket" Type="Self.Estado_Ticket" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado_Ticket">
+              <PropertyRef Name="id_estado_ticket" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="id_estado_ticket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ticketsegemp">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Ticket_Seguimiento" Type="Self.Ticket_Seguimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="Ticket_Seguimiento">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ticketsegticket">
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="0..1" />
+          <End Role="Ticket_Seguimiento" Type="Self.Ticket_Seguimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket">
+              <PropertyRef Name="id_ticket" />
+            </Principal>
+            <Dependent Role="Ticket_Seguimiento">
+              <PropertyRef Name="id_ticket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="analisis2_2022ModelStoreContainer">
+          <EntitySet Name="Categoria_Insumo" EntityType="Self.Categoria_Insumo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categoria_Ticket" EntityType="Self.Categoria_Ticket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estado_Ticket" EntityType="Self.Estado_Ticket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Insumo" EntityType="Self.Insumo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Puesto" EntityType="Self.Puesto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Requisicion_Interna" EntityType="Self.Requisicion_Interna" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ticket_Seguimiento" EntityType="Self.Ticket_Seguimiento" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_empleadopuesto" Association="Self.FK_empleadopuesto">
+            <End Role="Puesto" EntitySet="Puesto" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_insumocatinsumo" Association="Self.FK_insumocatinsumo">
+            <End Role="Categoria_Insumo" EntitySet="Categoria_Insumo" />
+            <End Role="Insumo" EntitySet="Insumo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_reqintinsumo" Association="Self.FK_reqintinsumo">
+            <End Role="Insumo" EntitySet="Insumo" />
+            <End Role="Requisicion_Interna" EntitySet="Requisicion_Interna" />
+          </AssociationSet>
+          <AssociationSet Name="FK_reqintticket" Association="Self.FK_reqintticket">
+            <End Role="Ticket_Seguimiento" EntitySet="Ticket_Seguimiento" />
+            <End Role="Requisicion_Interna" EntitySet="Requisicion_Interna" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ticketcatticket" Association="Self.FK_ticketcatticket">
+            <End Role="Categoria_Ticket" EntitySet="Categoria_Ticket" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ticketempasig" Association="Self.FK_ticketempasig">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ticketempsoli" Association="Self.FK_ticketempsoli">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ticketestadoticket" Association="Self.FK_ticketestadoticket">
+            <End Role="Estado_Ticket" EntitySet="Estado_Ticket" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ticketsegemp" Association="Self.FK_ticketsegemp">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Ticket_Seguimiento" EntitySet="Ticket_Seguimiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ticketsegticket" Association="Self.FK_ticketsegticket">
+            <End Role="Ticket" EntitySet="Ticket" />
+            <End Role="Ticket_Seguimiento" EntitySet="Ticket_Seguimiento" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="analisis2_2022Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Categoria_Insumo">
+          <Key>
+            <PropertyRef Name="id_categoria_insumo" />
+          </Key>
+          <Property Name="id_categoria_insumo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <NavigationProperty Name="Insumo" Relationship="Self.FK_insumocatinsumo" FromRole="Categoria_Insumo" ToRole="Insumo" />
+        </EntityType>
+        <EntityType Name="Categoria_Ticket">
+          <Key>
+            <PropertyRef Name="id_categoria_ticket" />
+          </Key>
+          <Property Name="id_categoria_ticket" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <NavigationProperty Name="Ticket" Relationship="Self.FK_ticketcatticket" FromRole="Categoria_Ticket" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="id_empleado" />
+          </Key>
+          <Property Name="id_empleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_puesto" Type="Int32" />
+          <Property Name="codigo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="usuario" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Puesto" Relationship="Self.FK_empleadopuesto" FromRole="Empleado" ToRole="Puesto" />
+          <NavigationProperty Name="Ticket" Relationship="Self.FK_ticketempasig" FromRole="Empleado" ToRole="Ticket" />
+          <NavigationProperty Name="Ticket1" Relationship="Self.FK_ticketempsoli" FromRole="Empleado" ToRole="Ticket" />
+          <NavigationProperty Name="Ticket_Seguimiento" Relationship="Self.FK_ticketsegemp" FromRole="Empleado" ToRole="Ticket_Seguimiento" />
+        </EntityType>
+        <EntityType Name="Estado_Ticket">
+          <Key>
+            <PropertyRef Name="id_estado_ticket" />
+          </Key>
+          <Property Name="id_estado_ticket" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <NavigationProperty Name="Ticket" Relationship="Self.FK_ticketestadoticket" FromRole="Estado_Ticket" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="Insumo">
+          <Key>
+            <PropertyRef Name="id_insumo" />
+          </Key>
+          <Property Name="id_insumo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_categoria_insumo" Type="Int32" />
+          <Property Name="codigo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad" Type="Int32" />
+          <Property Name="estado" Type="Int32" />
+          <NavigationProperty Name="Categoria_Insumo" Relationship="Self.FK_insumocatinsumo" FromRole="Insumo" ToRole="Categoria_Insumo" />
+          <NavigationProperty Name="Requisicion_Interna" Relationship="Self.FK_reqintinsumo" FromRole="Insumo" ToRole="Requisicion_Interna" />
+        </EntityType>
+        <EntityType Name="Puesto">
+          <Key>
+            <PropertyRef Name="id_puesto" />
+          </Key>
+          <Property Name="id_puesto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_empleadopuesto" FromRole="Puesto" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="Requisicion_Interna">
+          <Key>
+            <PropertyRef Name="id_requisicion" />
+          </Key>
+          <Property Name="id_requisicion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_ticket_seguimiento" Type="Int32" />
+          <Property Name="id_insumo" Type="Int32" />
+          <Property Name="cantidad" Type="Int32" />
+          <Property Name="fecha_solicitud" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Insumo" Relationship="Self.FK_reqintinsumo" FromRole="Requisicion_Interna" ToRole="Insumo" />
+          <NavigationProperty Name="Ticket_Seguimiento" Relationship="Self.FK_reqintticket" FromRole="Requisicion_Interna" ToRole="Ticket_Seguimiento" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="id_ticket" />
+          </Key>
+          <Property Name="id_ticket" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_empleado_solicitud" Type="Int32" />
+          <Property Name="id_empleado_asignacion" Type="Int32" />
+          <Property Name="id_categoria_ticket" Type="Int32" />
+          <Property Name="id_estado_ticket" Type="Int32" />
+          <Property Name="fecha_solicitud" Type="DateTime" Precision="3" />
+          <Property Name="titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Categoria_Ticket" Relationship="Self.FK_ticketcatticket" FromRole="Ticket" ToRole="Categoria_Ticket" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_ticketempasig" FromRole="Ticket" ToRole="Empleado" />
+          <NavigationProperty Name="Empleado1" Relationship="Self.FK_ticketempsoli" FromRole="Ticket" ToRole="Empleado" />
+          <NavigationProperty Name="Estado_Ticket" Relationship="Self.FK_ticketestadoticket" FromRole="Ticket" ToRole="Estado_Ticket" />
+          <NavigationProperty Name="Ticket_Seguimiento" Relationship="Self.FK_ticketsegticket" FromRole="Ticket" ToRole="Ticket_Seguimiento" />
+        </EntityType>
+        <EntityType Name="Ticket_Seguimiento">
+          <Key>
+            <PropertyRef Name="id_ticket_seguimiento" />
+          </Key>
+          <Property Name="id_ticket_seguimiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_empleado" Type="Int32" />
+          <Property Name="id_ticket" Type="Int32" />
+          <Property Name="fecha_seguimiento" Type="DateTime" Precision="3" />
+          <Property Name="descripcion_seguimiento" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_inicio_seguimiento" Type="DateTime" Precision="3" />
+          <Property Name="fecha_fin_seguimiento" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_ticketsegemp" FromRole="Ticket_Seguimiento" ToRole="Empleado" />
+          <NavigationProperty Name="Requisicion_Interna" Relationship="Self.FK_reqintticket" FromRole="Ticket_Seguimiento" ToRole="Requisicion_Interna" />
+          <NavigationProperty Name="Ticket" Relationship="Self.FK_ticketsegticket" FromRole="Ticket_Seguimiento" ToRole="Ticket" />
+        </EntityType>
+        <Association Name="FK_insumocatinsumo">
+          <End Role="Categoria_Insumo" Type="Self.Categoria_Insumo" Multiplicity="0..1" />
+          <End Role="Insumo" Type="Self.Insumo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria_Insumo">
+              <PropertyRef Name="id_categoria_insumo" />
+            </Principal>
+            <Dependent Role="Insumo">
+              <PropertyRef Name="id_categoria_insumo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ticketcatticket">
+          <End Role="Categoria_Ticket" Type="Self.Categoria_Ticket" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria_Ticket">
+              <PropertyRef Name="id_categoria_ticket" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="id_categoria_ticket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_empleadopuesto">
+          <End Role="Puesto" Type="Self.Puesto" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Puesto">
+              <PropertyRef Name="id_puesto" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="id_puesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ticketempasig">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="id_empleado_asignacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ticketempsoli">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="id_empleado_solicitud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ticketsegemp">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Ticket_Seguimiento" Type="Self.Ticket_Seguimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="Ticket_Seguimiento">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ticketestadoticket">
+          <End Role="Estado_Ticket" Type="Self.Estado_Ticket" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado_Ticket">
+              <PropertyRef Name="id_estado_ticket" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="id_estado_ticket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_reqintinsumo">
+          <End Role="Insumo" Type="Self.Insumo" Multiplicity="0..1" />
+          <End Role="Requisicion_Interna" Type="Self.Requisicion_Interna" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Insumo">
+              <PropertyRef Name="id_insumo" />
+            </Principal>
+            <Dependent Role="Requisicion_Interna">
+              <PropertyRef Name="id_insumo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_reqintticket">
+          <End Role="Ticket_Seguimiento" Type="Self.Ticket_Seguimiento" Multiplicity="0..1" />
+          <End Role="Requisicion_Interna" Type="Self.Requisicion_Interna" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket_Seguimiento">
+              <PropertyRef Name="id_ticket_seguimiento" />
+            </Principal>
+            <Dependent Role="Requisicion_Interna">
+              <PropertyRef Name="id_ticket_seguimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ticketsegticket">
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="0..1" />
+          <End Role="Ticket_Seguimiento" Type="Self.Ticket_Seguimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket">
+              <PropertyRef Name="id_ticket" />
+            </Principal>
+            <Dependent Role="Ticket_Seguimiento">
+              <PropertyRef Name="id_ticket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="analisis2_2022Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categoria_Insumo" EntityType="Self.Categoria_Insumo" />
+          <EntitySet Name="Categoria_Ticket" EntityType="Self.Categoria_Ticket" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" />
+          <EntitySet Name="Estado_Ticket" EntityType="Self.Estado_Ticket" />
+          <EntitySet Name="Insumo" EntityType="Self.Insumo" />
+          <EntitySet Name="Puesto" EntityType="Self.Puesto" />
+          <EntitySet Name="Requisicion_Interna" EntityType="Self.Requisicion_Interna" />
+          <EntitySet Name="Ticket" EntityType="Self.Ticket" />
+          <EntitySet Name="Ticket_Seguimiento" EntityType="Self.Ticket_Seguimiento" />
+          <AssociationSet Name="FK_insumocatinsumo" Association="Self.FK_insumocatinsumo">
+            <End Role="Categoria_Insumo" EntitySet="Categoria_Insumo" />
+            <End Role="Insumo" EntitySet="Insumo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ticketcatticket" Association="Self.FK_ticketcatticket">
+            <End Role="Categoria_Ticket" EntitySet="Categoria_Ticket" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empleadopuesto" Association="Self.FK_empleadopuesto">
+            <End Role="Puesto" EntitySet="Puesto" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ticketempasig" Association="Self.FK_ticketempasig">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ticketempsoli" Association="Self.FK_ticketempsoli">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ticketsegemp" Association="Self.FK_ticketsegemp">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Ticket_Seguimiento" EntitySet="Ticket_Seguimiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ticketestadoticket" Association="Self.FK_ticketestadoticket">
+            <End Role="Estado_Ticket" EntitySet="Estado_Ticket" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_reqintinsumo" Association="Self.FK_reqintinsumo">
+            <End Role="Insumo" EntitySet="Insumo" />
+            <End Role="Requisicion_Interna" EntitySet="Requisicion_Interna" />
+          </AssociationSet>
+          <AssociationSet Name="FK_reqintticket" Association="Self.FK_reqintticket">
+            <End Role="Ticket_Seguimiento" EntitySet="Ticket_Seguimiento" />
+            <End Role="Requisicion_Interna" EntitySet="Requisicion_Interna" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ticketsegticket" Association="Self.FK_ticketsegticket">
+            <End Role="Ticket" EntitySet="Ticket" />
+            <End Role="Ticket_Seguimiento" EntitySet="Ticket_Seguimiento" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="analisis2_2022ModelStoreContainer" CdmEntityContainer="analisis2_2022Entities">
+          <EntitySetMapping Name="Categoria_Insumo">
+            <EntityTypeMapping TypeName="analisis2_2022Model.Categoria_Insumo">
+              <MappingFragment StoreEntitySet="Categoria_Insumo">
+                <ScalarProperty Name="id_categoria_insumo" ColumnName="id_categoria_insumo" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categoria_Ticket">
+            <EntityTypeMapping TypeName="analisis2_2022Model.Categoria_Ticket">
+              <MappingFragment StoreEntitySet="Categoria_Ticket">
+                <ScalarProperty Name="id_categoria_ticket" ColumnName="id_categoria_ticket" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleado">
+            <EntityTypeMapping TypeName="analisis2_2022Model.Empleado">
+              <MappingFragment StoreEntitySet="Empleado">
+                <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+                <ScalarProperty Name="id_puesto" ColumnName="id_puesto" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estado_Ticket">
+            <EntityTypeMapping TypeName="analisis2_2022Model.Estado_Ticket">
+              <MappingFragment StoreEntitySet="Estado_Ticket">
+                <ScalarProperty Name="id_estado_ticket" ColumnName="id_estado_ticket" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Insumo">
+            <EntityTypeMapping TypeName="analisis2_2022Model.Insumo">
+              <MappingFragment StoreEntitySet="Insumo">
+                <ScalarProperty Name="id_insumo" ColumnName="id_insumo" />
+                <ScalarProperty Name="id_categoria_insumo" ColumnName="id_categoria_insumo" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Puesto">
+            <EntityTypeMapping TypeName="analisis2_2022Model.Puesto">
+              <MappingFragment StoreEntitySet="Puesto">
+                <ScalarProperty Name="id_puesto" ColumnName="id_puesto" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requisicion_Interna">
+            <EntityTypeMapping TypeName="analisis2_2022Model.Requisicion_Interna">
+              <MappingFragment StoreEntitySet="Requisicion_Interna">
+                <ScalarProperty Name="id_requisicion" ColumnName="id_requisicion" />
+                <ScalarProperty Name="id_ticket_seguimiento" ColumnName="id_ticket_seguimiento" />
+                <ScalarProperty Name="id_insumo" ColumnName="id_insumo" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="fecha_solicitud" ColumnName="fecha_solicitud" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ticket">
+            <EntityTypeMapping TypeName="analisis2_2022Model.Ticket">
+              <MappingFragment StoreEntitySet="Ticket">
+                <ScalarProperty Name="id_ticket" ColumnName="id_ticket" />
+                <ScalarProperty Name="id_empleado_solicitud" ColumnName="id_empleado_solicitud" />
+                <ScalarProperty Name="id_empleado_asignacion" ColumnName="id_empleado_asignacion" />
+                <ScalarProperty Name="id_categoria_ticket" ColumnName="id_categoria_ticket" />
+                <ScalarProperty Name="id_estado_ticket" ColumnName="id_estado_ticket" />
+                <ScalarProperty Name="fecha_solicitud" ColumnName="fecha_solicitud" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ticket_Seguimiento">
+            <EntityTypeMapping TypeName="analisis2_2022Model.Ticket_Seguimiento">
+              <MappingFragment StoreEntitySet="Ticket_Seguimiento">
+                <ScalarProperty Name="id_ticket_seguimiento" ColumnName="id_ticket_seguimiento" />
+                <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+                <ScalarProperty Name="id_ticket" ColumnName="id_ticket" />
+                <ScalarProperty Name="fecha_seguimiento" ColumnName="fecha_seguimiento" />
+                <ScalarProperty Name="descripcion_seguimiento" ColumnName="descripcion_seguimiento" />
+                <ScalarProperty Name="fecha_inicio_seguimiento" ColumnName="fecha_inicio_seguimiento" />
+                <ScalarProperty Name="fecha_fin_seguimiento" ColumnName="fecha_fin_seguimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
