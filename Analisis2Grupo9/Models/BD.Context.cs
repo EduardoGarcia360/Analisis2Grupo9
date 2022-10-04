@@ -17,12 +17,14 @@ namespace Analisis2Grupo9.Models
     {
         public analisis2_2022Entities()
             : base("name=analisis2_2022Entities")
+
         {
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
+
         }
     
         public virtual DbSet<Categoria_Insumo> Categoria_Insumo { get; set; }
