@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Analisis2Grupo9.Models;
 using Analisis2Grupo9.Models.TableModels;
@@ -35,7 +33,22 @@ namespace Analisis2Grupo9.Controllers
         }
 
         [HttpGet]
-        public ActionResult Add() { return View(); }
+        public ActionResult Add() {
+            List<PuestoTableModel> puestos = null;
+            using (var db = new analisis2_2022Entities())
+            {
+                 puestos = (from p in db.Puesto 
+                            where p.estado == 1
+                            select new PuestoTableModel
+                            {
+                                IdPuesto = p.id_puesto,
+                                Nombre = p.nombre
+                            }).ToList();
+                ViewBag.puestos = puestos;
+            }
+
+            return View(); 
+        }
 
         [HttpPost]
         public ActionResult Add(EmpleadoViewModel model)
@@ -67,8 +80,9 @@ namespace Analisis2Grupo9.Controllers
         public ActionResult Edit(int IdEmpleado) 
         {
             EditEmpleadoViewModel model = new EditEmpleadoViewModel();
+            List<PuestoTableModel> puestos = null;
 
-            using(var db = new analisis2_2022Entities())
+            using (var db = new analisis2_2022Entities())
             {
                 var oEmpleado = db.Empleado.Find(IdEmpleado);
 
@@ -79,6 +93,15 @@ namespace Analisis2Grupo9.Controllers
                 model.Apellido = oEmpleado.apellido;
                 model.Usuario = oEmpleado.usuario;
                 model.Password = oEmpleado.password;
+
+                puestos = (from p in db.Puesto
+                           where p.estado == 1
+                           select new PuestoTableModel
+                           {
+                               IdPuesto = p.id_puesto,
+                               Nombre = p.nombre
+                           }).ToList();
+                ViewBag.puestos = puestos;
             }
             return View(model); 
         }

@@ -14,7 +14,9 @@
             @Html.ValidationMessage("error", new { @class = "text-danger" })
 
             @Html.LabelFor(d => d.IdPuesto)
-            @Html.TextBoxFor(d => d.IdPuesto, new { @class = "form-control" })
+            @Html.DropDownListFor(d => d.IdPuesto,
+                new SelectList(ViewBag.puestos, "IdPuesto", "Nombre"),
+                new { @class = "form-control" })
             @Html.ValidationMessage("Puesto", new { @class = "text-danger" })
             <br />
 
