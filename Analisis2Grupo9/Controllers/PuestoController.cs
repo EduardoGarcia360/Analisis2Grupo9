@@ -44,8 +44,8 @@ namespace Analisis2Grupo9.Controllers
             using (var db = new analisis2_2022Entities())
             {
                 Puesto puesto = new Puesto();
-                puesto.codigo = model.Codigo;
-                puesto.nombre = model.Nombre;
+                puesto.codigo = model.Codigo.Trim();
+                puesto.nombre = model.Nombre.Trim();
                 puesto.estado = 1;
 
                 db.Puesto.Add(puesto);

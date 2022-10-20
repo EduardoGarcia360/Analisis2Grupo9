@@ -63,11 +63,11 @@ namespace Analisis2Grupo9.Controllers
                 Empleado empleado = new Empleado();
 
                 empleado.id_puesto = model.IdPuesto;
-                empleado.codigo = model.Codigo;
-                empleado.nombre = model.Nombre;
-                empleado.apellido = model.Apellido;
-                empleado.usuario = model.Usuario;
-                empleado.password = model.Password;
+                empleado.codigo = model.Codigo.Trim();
+                empleado.nombre = model.Nombre.Trim();
+                empleado.apellido = model.Apellido.Trim();
+                empleado.usuario = model.Usuario.Trim();
+                empleado.password = model.Password.Trim();
 
                 db.Empleado.Add(empleado);
                 db.SaveChanges();
