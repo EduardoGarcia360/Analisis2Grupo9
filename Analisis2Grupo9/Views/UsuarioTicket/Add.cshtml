@@ -20,7 +20,7 @@
             @Html.LabelFor(d => d.IdCategoria)
             @Html.DropDownListFor(d => d.IdCategoria,
                 new SelectList(ViewBag.categorias, "IdCategoriaTicket", "Nombre"),
-                new { @class = "form-control" })
+                new { @class = "form-control form-select" })
             @Html.ValidationMessage("Categoria", new { @class = "text-danger" })
             <br />
 

@@ -40,7 +40,16 @@
                     <th>@item.CategoriaTicketDesc</th>
                     <th>@item.NombreEmpleadoAsignado @item.ApellidoEmpleadoAsignado</th>
                     <th></th>
-                    <th>@item.EstadoTicketDesc</th>
+                    <th>
+                        @if (item.IdEstadoTicket == 1)
+                        {
+                            <span class="badge text-bg-primary">@item.EstadoTicketDesc</span>
+                        }
+                        @if (item.IdEstadoTicket == 2)
+                        {
+                            <span class="badge text-bg-secondary">@item.EstadoTicketDesc</span>
+                        }
+                    </th>
                 </tr>
             }
         </table>
