@@ -25,13 +25,13 @@ namespace Analisis2Grupo9.Controllers
                     {
                         Session["User"] = lst.First();
                         return Content("1");
-                    } 
+                    }
                     else
                     {
                         return Content("Usuario invalido");
                     }
                 }
-                    
+
             }
             catch (Exception e)
             {

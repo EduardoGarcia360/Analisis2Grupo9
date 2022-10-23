@@ -1,0 +1,45 @@
+﻿@model List<Analisis2Grupo9.Models.ViewModels.catTicket>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Categorias Ticket</h2>
+<-->Este archivo es para mostrar el listado de todos los registros, ver de nuevo video 4</-->
+<div class="row">
+    <div class="col-md-12">
+        <input type="button" class="btn btn-primary" onclick="document.location.href= '@Url.Content("~/CatTicket/AddCat")'" name="name" value="Ver" />
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-bordered">
+            <tr>
+                <td>Codigo</td>
+                <td>Nombre</td>
+                <td>Estado</td>
+            </tr>
+            @foreach (var oElemento in Model)
+            {
+                <tr>
+                    <td>@oElemento.Codigo</td>
+                    <td>@oElemento.Nombre</td>
+                    <td>@oElemento.Estado</td>
+                    <td>
+                        <input type="button" class="btn btn-danger" onclick="document.location.href= '@Url.Content("~/CatTicket/Edit"+oElemento.Codigo)'" name="name" value="Actualizar" />
+                    </td>
+                    <td>
+                        <input type="button" class="btn btn-default" onclick="jsDelete(@oElemento.Codigo);" name="name" value="Eliminar" />
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<script>
+    function jsDelete(codigo) {
+
+    }
+</script>
