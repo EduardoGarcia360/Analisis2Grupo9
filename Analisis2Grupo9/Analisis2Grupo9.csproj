@@ -130,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccessController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InsumoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -169,12 +170,14 @@
     <Compile Include="Models\Requisicion_Interna.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TableViewsModels\InsumosTableViewModel.cs" />
     <Compile Include="Models\Ticket.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Ticket_Seguimiento.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\InsumoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -231,6 +234,9 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Access\Index.cshtml" />
+    <Content Include="Views\Insumo\Index.cshtml" />
+    <Content Include="Views\Insumo\Add.cshtml" />
+    <Content Include="Views\Insumo\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
