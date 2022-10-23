@@ -15,7 +15,7 @@
             @Html.LabelFor(d => d.IdPuesto)
             @Html.DropDownListFor(d => d.IdPuesto, 
                 new SelectList(ViewBag.puestos, "IdPuesto", "Nombre"),
-                new { @class = "form-control" })
+                new { @class = "form-control form-select" })
             @Html.ValidationMessage("Puesto", new { @class = "text-danger" })
             <br />
 

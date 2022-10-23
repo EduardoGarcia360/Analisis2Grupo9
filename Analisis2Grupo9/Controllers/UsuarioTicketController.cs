@@ -16,6 +16,7 @@ namespace Analisis2Grupo9.Controllers
         public ActionResult Index()
         {
             List<TicketTableModel> tickets = null;
+            int idEmpleadoUsuario = Convert.ToInt16(Session["IdUsuario"]);
             
             using (var db = new analisis2_2022Entities())
             {
@@ -25,10 +26,9 @@ namespace Analisis2Grupo9.Controllers
                            join et in db.Estado_Ticket
                                 on t.id_estado_ticket equals et.id_estado_ticket
                            join ea in db.Empleado
-                                on t.id_empleado_asignacion equals ea.id_empleado 
+                                on t.id_empleado_asignacion equals ea.id_empleado
                            into EmpleadoAsignado from pea in EmpleadoAsignado.DefaultIfEmpty() // left join
-                           where t.id_estado_ticket == 1 // solo los tickets pendientes
-                           where t.id_empleado_solicitud == 1
+                           where t.id_empleado_solicitud == idEmpleadoUsuario
                            select new TicketTableModel
                            {
                                IdTicket = t.id_ticket,
@@ -64,11 +64,12 @@ namespace Analisis2Grupo9.Controllers
                 return View(model);
             }
 
+            int idEmpleadoUsuario = Convert.ToInt16(Session["IdUsuario"]);
             using (var db = new analisis2_2022Entities())
             {
                 Ticket ticket = new Ticket();
 
-                ticket.id_empleado_solicitud = 1;
+                ticket.id_empleado_solicitud = idEmpleadoUsuario;
                 ticket.id_categoria_ticket = model.IdCategoria;
                 ticket.id_estado_ticket = 1; // estado pendiente
                 ticket.fecha_solicitud = DateTime.Now;

@@ -34,19 +34,7 @@ namespace Analisis2Grupo9.Controllers
 
         [HttpGet]
         public ActionResult Add() {
-            List<PuestoTableModel> puestos = null;
-            using (var db = new analisis2_2022Entities())
-            {
-                 puestos = (from p in db.Puesto 
-                            where p.estado == 1
-                            select new PuestoTableModel
-                            {
-                                IdPuesto = p.id_puesto,
-                                Nombre = p.nombre
-                            }).ToList();
-                ViewBag.puestos = puestos;
-            }
-
+            ViewBag.puestos = getPuestos();
             return View(); 
         }
 
@@ -55,6 +43,7 @@ namespace Analisis2Grupo9.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.puestos = getPuestos();
                 return View(model);
             }
 
@@ -80,7 +69,6 @@ namespace Analisis2Grupo9.Controllers
         public ActionResult Edit(int IdEmpleado) 
         {
             EditEmpleadoViewModel model = new EditEmpleadoViewModel();
-            List<PuestoTableModel> puestos = null;
 
             using (var db = new analisis2_2022Entities())
             {
@@ -93,16 +81,9 @@ namespace Analisis2Grupo9.Controllers
                 model.Apellido = oEmpleado.apellido;
                 model.Usuario = oEmpleado.usuario;
                 model.Password = oEmpleado.password;
-
-                puestos = (from p in db.Puesto
-                           where p.estado == 1
-                           select new PuestoTableModel
-                           {
-                               IdPuesto = p.id_puesto,
-                               Nombre = p.nombre
-                           }).ToList();
-                ViewBag.puestos = puestos;
             }
+
+            ViewBag.puestos = getPuestos();
             return View(model); 
         }
 
@@ -111,6 +92,7 @@ namespace Analisis2Grupo9.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.puestos = getPuestos();
                 return View(model);
             }
 
@@ -130,6 +112,24 @@ namespace Analisis2Grupo9.Controllers
             }
 
             return Redirect(Url.Content("~/Empleado/"));
+        }
+
+        private List<PuestoTableModel> getPuestos()
+        {
+            List<PuestoTableModel> puestos = null;
+
+            using (var db = new analisis2_2022Entities())
+            {
+                puestos = (from p in db.Puesto
+                           where p.estado == 1
+                           select new PuestoTableModel
+                           {
+                               IdPuesto = p.id_puesto,
+                               Nombre = p.nombre
+                           }).ToList();
+            }
+
+            return puestos;
         }
     }
 }

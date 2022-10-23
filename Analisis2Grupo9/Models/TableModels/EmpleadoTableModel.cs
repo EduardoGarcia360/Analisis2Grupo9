@@ -15,6 +15,7 @@ namespace Analisis2Grupo9.Models.TableModels
         public string Apellido { get; set; }
         public string Usuario { get; set; }
         public string Contrasenia { get; set; }
+        public string NombreCompleto { get; set; }
 
     }
 }
