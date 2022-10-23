@@ -1,0 +1,51 @@
+﻿@model List<Analisis2Grupo9.Models.TableModels.EmpleadoTableModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <input type="button" 
+               class="btn btn-success" 
+               onclick="document.location.href = '@Url.Content("~/Empleado/Add")'" 
+               value="Nuevo" />
+    </div>
+</div>
+
+<br />
+
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-bordered">
+            <tr>
+                <th>#</th>
+                <th>Puesto</th>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Usuario</th>
+                <th>Acciones</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>@item.IdEmpleado</th>
+                    <th>@item.Puesto</th>
+                    <th>@item.Codigo</th>
+                    <th>@item.Nombre</th>
+                    <th>@item.Apellido</th>
+                    <th>@item.Usuario</th>
+                    <th>
+                        <input type="button"
+                               value="Editar"
+                               class="btn btn-info"
+                               onclick="document.location.href = '@Url.Content("~/Empleado/Edit?IdEmpleado="+item.IdEmpleado)'" />
+                    </th>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
