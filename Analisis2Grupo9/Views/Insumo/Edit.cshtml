@@ -1,0 +1,43 @@
+﻿@model Analisis2Grupo9.Models.ViewModels.InsumoEditViewModel
+@{
+    ViewBag.Title = "Editar insumo";
+}
+
+<h2>Nuevo insumo</h2>
+
+<div class="row">
+
+    <div class="col-md-12">
+        @using (Html.BeginForm("Edit", "Insumo", FormMethod.Post, new { role = "form", @class = "" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationMessage("Error", new { @class = "text-danger" })
+
+            @*@Html.LabelFor(d => d.id_insumo)
+            @Html.TextBoxFor(d => d.id_insumo, new { @class = "form-control" })*@
+
+            @Html.LabelFor(d => d.id_categoria_insumo)
+            @Html.TextBoxFor(d => d.id_categoria_insumo, new { @class = "form-control" })
+
+            @Html.LabelFor(d => d.codigo)
+            @Html.TextBoxFor(d => d.codigo, new { @class = "form-control" })
+
+            @Html.LabelFor(d => d.descripcion)
+            @Html.TextBoxFor(d => d.descripcion, new { @class = "form-control" })
+
+            @Html.LabelFor(d => d.cantidad)
+            @Html.TextBoxFor(d => d.cantidad, new { @class = "form-control" })
+
+            @Html.LabelFor(d => d.estado)
+            @Html.TextBoxFor(d => d.estado, new { @class = "form-control" })
+
+
+            <div style="text-align:right;">
+                <input type="submit" class="btn btn-success" value="Guardar" />
+            </div>
+        }
+    </div>
+
+</div>
+

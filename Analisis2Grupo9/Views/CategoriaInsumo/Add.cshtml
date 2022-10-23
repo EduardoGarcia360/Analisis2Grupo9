@@ -1,0 +1,31 @@
+﻿@model Analisis2Grupo9.Models.ViewModels.CategoriaInsumoViewModel
+@{
+    ViewBag.Title = "Agregar Categoría Insumo";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("Add", "CategoriaInsumo", FormMethod.Post, new { role = "form", @class = "" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationMessage("error", new { @class = "text-danger" })
+
+            @Html.LabelFor(d => d.codigo)
+            @Html.TextBoxFor(d => d.codigo, new { @class = "form-control" })
+
+            @Html.LabelFor(d => d.nombre)
+            @Html.TextBoxFor(d => d.nombre, new { @class = "form-control" })
+
+            @Html.LabelFor(d => d.estado)
+            @Html.TextBoxFor(d => d.estado, new { @class = "form-control" })
+
+            <div style="text-align:right">
+                <input type="submit" class="btn btn-success" value="Guardar" />
+            </div>
+        }
+    </div>
+</div>
