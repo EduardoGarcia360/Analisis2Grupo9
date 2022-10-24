@@ -56,6 +56,7 @@ namespace Analisis2Grupo9.Controllers
         public ActionResult Edit(int IdTicket)
         {
             GestionTicketViewModel model = new GestionTicketViewModel();
+            ViewBag.seguimientos = getTicketSeguimiento(IdTicket);
 
             using (var db = new analisis2_2022Entities())
             {
@@ -94,23 +95,28 @@ namespace Analisis2Grupo9.Controllers
             return Redirect(Url.Content("~/GestionTicket/"));
         }
 
-        private List<EmpleadoTableModel> getEmpleadoAsignacion()
+        private List<GestionTicketTableModel> getTicketSeguimiento(int idTicket)
         {
-            List<EmpleadoTableModel> empleados = null;
+            List<GestionTicketTableModel> ticketSeguimiento = null;
+
+            int idEmpleadoUsuario = Convert.ToInt16(Session["IdUsuario"]);
 
             using (var db = new analisis2_2022Entities())
             {
-                empleados = (from e in db.Empleado
-                             where e.id_puesto != 1
-                             select new EmpleadoTableModel
+                ticketSeguimiento = (from ts in db.Ticket_Seguimiento
+                             where ts.id_ticket == idTicket
+                             where ts.id_empleado == idEmpleadoUsuario
+                             select new GestionTicketTableModel
                              {
-                                 IdEmpleado = e.id_empleado,
-                                 NombreCompleto = e.nombre + " " + e.apellido
+                                 fecha_seguimiento = (DateTime)ts.fecha_seguimiento,
+                                 descripcion_seguimiento = ts.descripcion_seguimiento,
+                                 fecha_inicio_seguimiento = (DateTime)ts.fecha_inicio_seguimiento,
+                                 fecha_fin_seguimiento = (DateTime)ts.fecha_fin_seguimiento
                              }
                     ).ToList();
             }
 
-            return empleados;
+            return ticketSeguimiento;
         }
     }
 }

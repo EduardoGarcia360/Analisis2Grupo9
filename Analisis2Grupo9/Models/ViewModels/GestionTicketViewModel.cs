@@ -10,9 +10,10 @@ namespace Analisis2Grupo9.Models.ViewModels
     public class GestionTicketViewModel
     {
         // ID de la Gestion no es necesario, es autoincrementable y solo importa el ID del Ticket original
+        [Display(Name = "#Ticket")]
         public int idTicketMostrar { get; set; }
         [Required]
-        [Display(Name = "#Ticket")]
+        
         public int idTicket { get; set; } // ID del Ticket original
         [Required]
         [Display(Name = "Titulo Ticket")]

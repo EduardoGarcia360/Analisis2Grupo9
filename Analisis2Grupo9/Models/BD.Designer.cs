@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿// La generación de código T4 está habilitada para el modelo 'C:\Users\alumno\Desktop\Analisis2Grupo9\Analisis2Grupo9\Models\BD.edmx'. 
-=======
 ﻿// La generación de código T4 está habilitada para el modelo 'C:\Users\RGOTM\Documents\Visual Studio 2022\Proyectos\Analisis2Grupo9\Analisis2Grupo9\Models\BD.edmx'. 
->>>>>>> 0eacad83081a8612654c46dcb53318b6133eda37
 // Para habilitar la generación de código heredada, cambie el valor de la propiedad del diseñador 'Estrategia de generación de código'
 // por 'ObjectContext heredado'. Esta propiedad está disponible en la ventana Propiedades cuando se abre
 // el modelo en el diseñador.
