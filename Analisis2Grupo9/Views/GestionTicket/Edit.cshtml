@@ -1,0 +1,64 @@
+﻿@model Analisis2Grupo9.Models.ViewModels.GestionTicketViewModel
+@{
+    ViewBag.Title = "Gestionar Ticket";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("Edit", "GestionTicket", FormMethod.Post, new { role = "form", @class = "" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(d=> d.idTicket)
+
+            @Html.ValidationMessage("error", new { @class = "text-danger" })
+
+            @Html.LabelFor(d => d.idTicketMostrar)
+            @Html.TextBoxFor(d => d.idTicketMostrar, new { @class = "form-control", @readonly = "readonly" })
+            <br />
+
+            @Html.LabelFor(d => d.TituloTicket)
+            @Html.TextBoxFor(d => d.TituloTicket, new { @class = "form-control", @readonly = "readonly" })
+            <br />
+
+            @Html.LabelFor(d => d.DescripcionTicket)
+            @Html.TextBoxFor(d => d.DescripcionTicket, new { @class = "form-control", @readonly = "readonly" })
+            <br />
+
+            @Html.LabelFor(d => d.DescripcionSeguimiento)
+            @Html.TextBoxFor(d => d.DescripcionSeguimiento, new { @class = "form-control" })
+            <br />
+
+            <div class="form-group">
+                @Html.LabelFor(d => d.HoraInicio, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(d => d.HoraInicio, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(d => d.HoraInicio, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+
+            <div class="form-group">
+                @Html.LabelFor(d => d.HoraFinal, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(d => d.HoraFinal, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(d => d.HoraFinal, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+
+            <div style="text-align:left">
+                <input type="button"
+                       class="btn btn-danger"
+                       onclick="document.location.href = '@Url.Content("~/GestionTicket/")'"
+                       value="Cancelar" />
+            </div>
+            <div style="text-align:right">
+                <input type="submit"
+                       class="btn btn-info"
+                       value="Guardar" />
+            </div>
+        }
+    </div>
+</div>

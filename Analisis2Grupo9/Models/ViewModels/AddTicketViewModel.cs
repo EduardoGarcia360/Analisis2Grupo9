@@ -11,7 +11,7 @@ namespace Analisis2Grupo9.Models.ViewModels
     {
         [Required]
         [Display(Name = "Titulo")]
-        [StringLength(10, ErrorMessage = "El {0} debe tener al menos {1} caracteres", MinimumLength = 1)]
+        [StringLength(100, ErrorMessage = "El {0} debe tener un máximo de {1} caracteres", MinimumLength = 1)]
         public string Titulo { get; set; }
         [Required]
         [Display(Name = "Categoria")]

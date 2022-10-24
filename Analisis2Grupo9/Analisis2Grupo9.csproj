@@ -138,7 +138,7 @@
     <Compile Include="Controllers\InsumoController.cs" />
     <Compile Include="Controllers\PuestoController.cs" />
     <Compile Include="Controllers\UsuarioTicketController.cs" />
-	<Compile Include="Filters\VerifySession.cs" />
+    <Compile Include="Filters\VerifySession.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -183,20 +183,21 @@
     <Compile Include="Models\TableModels\GestionTicketTableModel.cs" />
     <Compile Include="Models\TableModels\PuestoTableModel.cs" />
     <Compile Include="Models\TableModels\TicketTableModel.cs" />
-	<Compile Include="Models\TableModels\AdminTicketTableModel.cs" />
-	<Compile Include="Models\TableViewsModels\InsumosTableViewModel.cs" />
+    <Compile Include="Models\TableModels\AdminTicketTableModel.cs" />
+    <Compile Include="Models\TableViewsModels\InsumosTableViewModel.cs" />
     <Compile Include="Models\Ticket.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Ticket_Seguimiento.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\GestionTicketViewModel.cs" />
     <Compile Include="Models\ViewModels\InsumoViewModel.cs" />
     <Compile Include="Models\ViewModels\AddTicketViewModel.cs" />
     <Compile Include="Models\ViewModels\EmpleadoViewModel.cs" />
     <Compile Include="Models\ViewModels\PuestoViewModel.cs" />
-	<Compile Include="Models\ViewModels\AdminTicketViewModel.cs" />
-	<Compile Include="Models\ViewModels\InsumoViewModel.cs" />
+    <Compile Include="Models\ViewModels\AdminTicketViewModel.cs" />
+    <Compile Include="Models\ViewModels\InsumoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -301,13 +302,14 @@
     <Content Include="Views\Empleado\Edit.cshtml" />
     <Content Include="Views\UsuarioTicket\Index.cshtml" />
     <Content Include="Views\UsuarioTicket\Add.cshtml" />
-	<Content Include="Views\AdminTicket\Index.cshtml" />
-	<Content Include="Views\AdminTicket\Edit.cshtml" />
+    <Content Include="Views\AdminTicket\Index.cshtml" />
+    <Content Include="Views\AdminTicket\Edit.cshtml" />
+    <Content Include="Views\GestionTicket\Index.cshtml" />
+    <Content Include="Views\GestionTicket\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Cerrar\" />
-    <Folder Include="Views\GestionTicket\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
