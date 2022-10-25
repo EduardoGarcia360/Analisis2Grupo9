@@ -138,6 +138,7 @@
     <Compile Include="Controllers\InsumoController.cs" />
     <Compile Include="Controllers\PuestoController.cs" />
     <Compile Include="Controllers\UsuarioTicketController.cs" />
+<Compile Include="Controllers\CatTicketController.cs" />
     <Compile Include="Filters\VerifySession.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -198,6 +199,8 @@
     <Compile Include="Models\ViewModels\PuestoViewModel.cs" />
     <Compile Include="Models\ViewModels\AdminTicketViewModel.cs" />
     <Compile Include="Models\ViewModels\InsumoViewModel.cs" />
+<Compile Include="Models\ViewModels\catTicket.cs" />
+
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -306,6 +309,9 @@
     <Content Include="Views\AdminTicket\Edit.cshtml" />
     <Content Include="Views\GestionTicket\Index.cshtml" />
     <Content Include="Views\GestionTicket\Edit.cshtml" />
+<Content Include="Views\CatTicket\Index.cshtml" />
+<Content Include="Views\CatTicket\Index.cshtml" />
+<Content Include="Views\CatTicket\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
