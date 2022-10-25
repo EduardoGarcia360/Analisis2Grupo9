@@ -15,6 +15,7 @@ namespace Analisis2Grupo9.Controllers
         public ActionResult Index()
         {
             List<AdminTicketTableModel> tickets = null;
+            int idEmpleadoUsuario = Convert.ToInt16(Session["IdUsuario"]);
 
             using (var db = new analisis2_2022Entities())
             {
@@ -29,6 +30,7 @@ namespace Analisis2Grupo9.Controllers
                                 on t.id_empleado_asignacion equals ea.id_empleado
                            into EmpleadoAsignado
                            from pea in EmpleadoAsignado.DefaultIfEmpty() // left join
+                           where t.id_empleado_asignacion == idEmpleadoUsuario
                            select new AdminTicketTableModel
                            {
                                IdTicket = t.id_ticket,

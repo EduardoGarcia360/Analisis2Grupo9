@@ -318,6 +318,9 @@
     <Content Include="Views\EstadoTicket\Index.cshtml" />
     <Content Include="Views\EstadoTicket\AddEstadoTicket.cshtml" />
     <Content Include="Views\EstadoTicket\Edit.cshtml" />
+    <Content Include="Views\CatTicket\Index.cshtml" />
+    <Content Include="Views\CatTicket\Edit.cshtml" />
+    <Content Include="Views\Shared\_LayoutSesion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
