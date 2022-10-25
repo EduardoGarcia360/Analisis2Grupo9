@@ -1,0 +1,55 @@
+﻿@model List<Analisis2Grupo9.Models.TableModels.AdminTicketTableModel>
+@{
+    ViewBag.Title = "Gestión de Tickets";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-bordered">
+            <tr>
+                <th>#</th>
+                <th>Solicitado</th>
+                <th>Solicito</th>
+                <th>Titulo</th>
+                <th>Descripcion</th>
+                <th>Categoria</th>
+                <th>Responsable</th>
+                <th>Finalizo</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>@item.IdTicket</th>
+                    <th>@item.FechaSolicitud</th>
+                    <th>@item.NombreEmpSoli @item.ApellidoEmpSoli</th>
+                    <th>@item.Titulo</th>
+                    <th>@item.Descripcion</th>
+                    <th>@item.NombreCatTicket</th>
+                    <th>@item.NombreEmpAsig @item.ApellidoEmpAsig</th>
+                    <th></th>
+                    <th>
+                        @if (item.IdEstadoTicket == 1)
+                        {
+                            <span class="badge text-bg-primary">@item.NombreEstadoTicket</span>
+                        }
+                        @if (item.IdEstadoTicket == 2)
+                        {
+                            <span class="badge text-bg-secondary">@item.NombreEstadoTicket</span>
+                        }
+                    </th>
+                    <th>
+                        <input type="button"
+                                value="Gestionar"
+                                class="btn btn-info"
+                                onclick="document.location.href = '@Url.Content("~/GestionTicket/Edit?IdTicket="+item.IdTicket)'" />
+                    </th>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

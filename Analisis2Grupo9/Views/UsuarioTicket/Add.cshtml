@@ -1,0 +1,45 @@
+﻿@model Analisis2Grupo9.Models.ViewModels.AddTicketViewModel
+@{
+    ViewBag.Title = "Agregar Ticket";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("Add", "UsuarioTicket", FormMethod.Post, new { role = "form", @class = "" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationMessage("error", new { @class = "text-danger" })
+
+            @Html.LabelFor(d => d.Titulo)
+            @Html.TextBoxFor(d => d.Titulo, new { @class = "form-control" })
+            @Html.ValidationMessage("Titulo", new { @class = "text-danger" })
+            <br />
+
+            @Html.LabelFor(d => d.IdCategoria)
+            @Html.DropDownListFor(d => d.IdCategoria,
+                new SelectList(ViewBag.categorias, "IdCategoriaTicket", "Nombre"),
+                new { @class = "form-control form-select" })
+            @Html.ValidationMessage("Categoria", new { @class = "text-danger" })
+            <br />
+
+            @Html.LabelFor(d => d.Descripcion)
+            @Html.TextBoxFor(d => d.Descripcion, new { @class = "form-control" })
+            @Html.ValidationMessage("Descripcion", new { @class = "text-danger" })
+            <br />
+
+            <div style="text-align:left">
+                <input type="button"
+                       class="btn btn-danger"
+                       onclick="document.location.href = '@Url.Content("~/UsuarioTicket/")'"
+                       value="Cancelar" />
+            </div>
+            <div style="text-align:right">
+                <input type="submit"
+                       class="btn btn-success"
+                       value="Guardar" />
+            </div>
+        }
+    </div>
+</div>

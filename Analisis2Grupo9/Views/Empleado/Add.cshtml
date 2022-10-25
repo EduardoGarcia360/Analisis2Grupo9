@@ -1,0 +1,60 @@
+﻿@model Analisis2Grupo9.Models.ViewModels.EmpleadoViewModel
+@{
+    ViewBag.Title = "Agregar Empleado";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("Add", "Empleado", FormMethod.Post, new { role = "form", @class = "" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationMessage("error", new { @class = "text-danger" })
+
+            @Html.LabelFor(d => d.IdPuesto)
+            @Html.DropDownListFor(d => d.IdPuesto, 
+                new SelectList(ViewBag.puestos, "IdPuesto", "Nombre"),
+                new { @class = "form-control form-select" })
+            @Html.ValidationMessage("Puesto", new { @class = "text-danger" })
+            <br />
+
+            @Html.LabelFor(d => d.Codigo)
+            @Html.TextBoxFor(d => d.Codigo, new { @class = "form-control" })
+            @Html.ValidationMessage("Codigo", new { @class = "text-danger" })
+            <br />
+
+            @Html.LabelFor(d => d.Nombre)
+            @Html.TextBoxFor(d => d.Nombre, new { @class = "form-control" })
+            @Html.ValidationMessage("Nombre", new { @class = "text-danger" })
+            <br />
+
+            @Html.LabelFor(d => d.Apellido)
+            @Html.TextBoxFor(d => d.Apellido, new { @class = "form-control" })
+            @Html.ValidationMessage("Apellido", new { @class = "text-danger" })
+            <br />
+
+            @Html.LabelFor(d => d.Usuario)
+            @Html.TextBoxFor(d => d.Usuario, new { @class = "form-control" })
+            @Html.ValidationMessage("Usuario", new { @class = "text-danger" })
+            <br />
+
+            @Html.LabelFor(d => d.Password)
+            @Html.TextBoxFor(d => d.Password, new { @class = "form-control" })
+            @Html.ValidationMessage("Contraseña", new { @class = "text-danger" })
+            <br />
+
+            <div style="text-align:left">
+                <input type="button"
+                       class="btn btn-danger"
+                       onclick="document.location.href = '@Url.Content("~/Empleado/")'"
+                       value="Cancelar" />
+            </div>
+            <div style="text-align:right">
+                <input type="submit"
+                       class="btn btn-success"
+                       value="Guardar" />
+            </div>
+        }
+    </div>
+</div>

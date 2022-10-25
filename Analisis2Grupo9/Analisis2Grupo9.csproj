@@ -130,8 +130,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccessController.cs" />
-    <Compile Include="Controllers\CatTicketController.cs" />
+    <Compile Include="Controllers\AdminTicketController.cs" />
+    <Compile Include="Controllers\CerrarController.cs" />
+    <Compile Include="Controllers\EmpleadoController.cs" />
+    <Compile Include="Controllers\GestionTicketController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InsumoController.cs" />
+    <Compile Include="Controllers\PuestoController.cs" />
+    <Compile Include="Controllers\UsuarioTicketController.cs" />
+    <Compile Include="Filters\VerifySession.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -171,22 +178,46 @@
     <Compile Include="Models\Requisicion_Interna.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TableModels\CategoriaTicketTableModel.cs" />
+    <Compile Include="Models\TableModels\EmpleadoTableModel.cs" />
+    <Compile Include="Models\TableModels\GestionTicketTableModel.cs" />
+    <Compile Include="Models\TableModels\PuestoTableModel.cs" />
+    <Compile Include="Models\TableModels\TicketTableModel.cs" />
+    <Compile Include="Models\TableModels\AdminTicketTableModel.cs" />
+    <Compile Include="Models\TableViewsModels\InsumosTableViewModel.cs" />
     <Compile Include="Models\Ticket.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Ticket_Seguimiento.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ViewModels\catTicket.cs" />
+    <Compile Include="Models\ViewModels\GestionTicketViewModel.cs" />
+    <Compile Include="Models\ViewModels\InsumoViewModel.cs" />
+    <Compile Include="Models\ViewModels\AddTicketViewModel.cs" />
+    <Compile Include="Models\ViewModels\EmpleadoViewModel.cs" />
+    <Compile Include="Models\ViewModels\PuestoViewModel.cs" />
+    <Compile Include="Models\ViewModels\AdminTicketViewModel.cs" />
+    <Compile Include="Models\ViewModels\InsumoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Models\BD.Context.tt">
@@ -199,8 +230,6 @@
       <DependentUpon>BD.edmx</DependentUpon>
       <LastGenOutput>BD.cs</LastGenOutput>
     </Content>
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\BD.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BD.Designer.cs</LastGenOutput>
@@ -208,6 +237,34 @@
     <Content Include="Models\BD.edmx.diagram">
       <DependentUpon>BD.edmx</DependentUpon>
     </Content>
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -234,22 +291,27 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Access\Index.cshtml" />
-    <Content Include="Views\CatTicket\AddCat.cshtml" />
-    <Content Include="Views\CatTicket\Index.cshtml" />
-    <Content Include="Views\CatTicket\Edit.cshtml" />
+    <Content Include="Views\Insumo\Index.cshtml" />
+    <Content Include="Views\Insumo\Add.cshtml" />
+    <Content Include="Views\Insumo\Edit.cshtml" />
+    <Content Include="Views\Puesto\Index.cshtml" />
+    <Content Include="Views\Puesto\Add.cshtml" />
+    <Content Include="Views\Puesto\Edit.cshtml" />
+    <Content Include="Views\Empleado\Index.cshtml" />
+    <Content Include="Views\Empleado\Add.cshtml" />
+    <Content Include="Views\Empleado\Edit.cshtml" />
+    <Content Include="Views\UsuarioTicket\Index.cshtml" />
+    <Content Include="Views\UsuarioTicket\Add.cshtml" />
+    <Content Include="Views\AdminTicket\Index.cshtml" />
+    <Content Include="Views\AdminTicket\Edit.cshtml" />
+    <Content Include="Views\GestionTicket\Index.cshtml" />
+    <Content Include="Views\GestionTicket\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Cerrar\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />

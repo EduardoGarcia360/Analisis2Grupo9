@@ -1,0 +1,75 @@
+﻿@model List<Analisis2Grupo9.Models.TableViewsModels.InsumosTableViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista insumos</h2>
+<div class="row">
+    <div class="col-md-12">
+        <input type="button" class="btn btn-primary" onclick="document.location.href='@Url.Content("~/Insumo/Add")'" value="Nuevo"/>
+    </div>
+</div>
+<br/>
+<div class="row">
+
+    <div class="col-lg-12">
+
+        <table class="table table-bordered">
+            <tr>
+                <td>#</td>
+                <td># categoria insumo</td>
+                <td>Codigo</td>
+                <td>Descripción</td>
+                <td>Cantidad</td>
+                <td>Estado</td>
+            </tr>
+
+            @foreach (var oElemento in Model) { 
+                <tr>
+
+                    <td>@oElemento.id_insumo</td>
+                    <td>@oElemento.id_categoria_insumo</td>
+                    <td>@oElemento.codigo</td>
+                    <td>@oElemento.descripcion</td>
+                    <td>@oElemento.cantidad</td>
+                    <td>@oElemento.estado</td>
+                    <td>
+                        <input type="button" onclick="jsDelete(@oElemento.id_insumo)" value="Eliminar" class="btn btn-danger" />
+                        <input type="button" onclick="document.location.href='@Url.Content("~/Insumo/Edit")'" value="Editar" class="btn-default"/>
+                    </td>
+
+                </tr>
+                
+            }
+
+        </table>
+
+    </div>
+
+</div>
+
+<script>
+    function jsDelete(id) {
+
+        if (confirm("Estas seguro de que lo quieres eliminar ? :O ")) {
+
+            url = "@Url.Content("~/Insumo/Delete")" + "/"id;
+
+            $.post(url function (data) {
+                if (data == "1") {
+                    document.location.href="@Url.Content("~/Insumo/")"
+
+                } else {
+                    alert('Un error ha ocurrido :/')
+                }
+
+            })
+
+
+        }
+
+
+
+    }
+
+</script>

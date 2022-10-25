@@ -1,0 +1,60 @@
+﻿@model Analisis2Grupo9.Models.ViewModels.AdminTicketViewModel
+@{
+    ViewBag.Title = "Asignar Empleado a Ticket";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("Edit", "AdminTicket", FormMethod.Post, new { role = "form", @class = "" }))
+        {
+            @Html.HiddenFor(d => d.IdTicket)
+            @Html.AntiForgeryToken()
+            @Html.ValidationMessage("error", new { @class = "text-danger" })
+
+            @Html.LabelFor(d => d.IdTicketMostrar)
+            @Html.TextBoxFor(d => d.IdTicketMostrar, new { @class = "form-control", @readonly = "readonly" })
+            <br />
+
+            @Html.LabelFor(d => d.Solicitado)
+            @Html.TextBoxFor(d => d.Solicitado, new { @class = "form-control", @readonly = "readonly" })
+            <br />
+
+            @Html.LabelFor(d => d.EmpleadoSolicito)
+            @Html.TextBoxFor(d => d.EmpleadoSolicito, new { @class = "form-control", @readonly = "readonly" })
+            <br />
+
+            @Html.LabelFor(d => d.Titulo)
+            @Html.TextBoxFor(d => d.Titulo, new { @class = "form-control", @readonly = "readonly" })
+            <br />
+
+            @Html.LabelFor(d => d.Descripcion)
+            @Html.TextBoxFor(d => d.Descripcion, new { @class = "form-control", @readonly = "readonly" })
+            <br />
+
+            @Html.LabelFor(d => d.Categoria)
+            @Html.TextBoxFor(d => d.Categoria, new { @class = "form-control", @readonly = "readonly" })
+            <br />
+
+            @Html.LabelFor(d => d.IdEmpleadoAsignacion)
+            @Html.DropDownListFor(d => d.IdEmpleadoAsignacion,
+                new SelectList(ViewBag.Empleados, "IdEmpleado", "NombreCompleto"),
+                new { @class = "form-control form-select" })
+            @Html.ValidationMessage("Empleado Asignacion", new { @class = "text-danger" })
+            <br />
+
+            <div style="text-align:left">
+                <input type="button"
+                       class="btn btn-danger"
+                       onclick="document.location.href = '@Url.Content("~/AdminTicket/")'"
+                       value="Cancelar" />
+            </div>
+            <div style="text-align:right">
+                <input type="submit"
+                       class="btn btn-info"
+                       value="Asignar" />
+            </div>
+        }
+    </div>
+</div>

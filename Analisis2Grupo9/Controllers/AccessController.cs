@@ -23,7 +23,9 @@ namespace Analisis2Grupo9.Controllers
                     var lst = from emp in db.Empleado where emp.usuario == user && emp.password == password select emp;
                     if (lst.Count() > 0)
                     {
-                        Session["User"] = lst.First();
+                        Empleado empleado = lst.First();
+                        Session["User"] = empleado;
+                        Session["IdUsuario"] = Convert.ToString(empleado.id_empleado);
                         return Content("1");
                     }
                     else
