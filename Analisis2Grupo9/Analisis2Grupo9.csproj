@@ -133,12 +133,13 @@
     <Compile Include="Controllers\AdminTicketController.cs" />
     <Compile Include="Controllers\CerrarController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
+    <Compile Include="Controllers\EstadoTicketController.cs" />
     <Compile Include="Controllers\GestionTicketController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InsumoController.cs" />
     <Compile Include="Controllers\PuestoController.cs" />
     <Compile Include="Controllers\UsuarioTicketController.cs" />
-<Compile Include="Controllers\CatTicketController.cs" />
+    <Compile Include="Controllers\CatTicketController.cs" />
     <Compile Include="Filters\VerifySession.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -185,6 +186,7 @@
     <Compile Include="Models\TableModels\PuestoTableModel.cs" />
     <Compile Include="Models\TableModels\TicketTableModel.cs" />
     <Compile Include="Models\TableModels\AdminTicketTableModel.cs" />
+    <Compile Include="Models\TableViewsModels\categoriaTicketTableModel.cs" />
     <Compile Include="Models\TableViewsModels\InsumosTableViewModel.cs" />
     <Compile Include="Models\Ticket.cs">
       <DependentUpon>BD.tt</DependentUpon>
@@ -192,6 +194,8 @@
     <Compile Include="Models\Ticket_Seguimiento.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TableViewsModels\EstadoTicketTableViewModel.cs" />
+    <Compile Include="Models\ViewModels\EstadoTicketViewModel.cs" />
     <Compile Include="Models\ViewModels\GestionTicketViewModel.cs" />
     <Compile Include="Models\ViewModels\InsumoViewModel.cs" />
     <Compile Include="Models\ViewModels\AddTicketViewModel.cs" />
@@ -199,8 +203,7 @@
     <Compile Include="Models\ViewModels\PuestoViewModel.cs" />
     <Compile Include="Models\ViewModels\AdminTicketViewModel.cs" />
     <Compile Include="Models\ViewModels\InsumoViewModel.cs" />
-<Compile Include="Models\ViewModels\catTicket.cs" />
-
+    <Compile Include="Models\ViewModels\catTicket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -309,9 +312,12 @@
     <Content Include="Views\AdminTicket\Edit.cshtml" />
     <Content Include="Views\GestionTicket\Index.cshtml" />
     <Content Include="Views\GestionTicket\Edit.cshtml" />
-<Content Include="Views\CatTicket\Index.cshtml" />
-<Content Include="Views\CatTicket\Index.cshtml" />
-<Content Include="Views\CatTicket\Edit.cshtml" />
+    <Content Include="Views\CatTicket\Index.cshtml" />
+    <Content Include="Views\CatTicket\Edit.cshtml" />
+    <Content Include="Views\CatTicket\AddCat.cshtml" />
+    <Content Include="Views\EstadoTicket\Index.cshtml" />
+    <Content Include="Views\EstadoTicket\AddEstadoTicket.cshtml" />
+    <Content Include="Views\EstadoTicket\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -9,30 +9,28 @@ using System.Web.Mvc;
 
 namespace Analisis2Grupo9.Controllers
 {
-    public class CatTicketController : Controller
+    public class EstadoTicketController : Controller
     {
-        // GET: CatTicket
+        // GET: EstadoTicket
         public ActionResult Index()
         {
-            List<categoriaTicketTableModel> lst = null;
+            List<EstadoTicketTableViewModel> lst = null;
             using (analisis2_2022Entities db = new analisis2_2022Entities())
             {
-                lst = (from d in db.Categoria_Ticket
+                lst = (from d in db.Estado_Ticket
                        where d.estado == 1
-                       select new categoriaTicketTableModel
+                       select new EstadoTicketTableViewModel
                        {
-                           Codigo = d.codigo,
                            Nombre = d.nombre,
                            Estado = (int)d.estado,
-                           IdCategoriaTicket = d.id_categoria_ticket
+                           idEstadoTicket = (int)d.id_estado_ticket
                        }).ToList();
             }
             return View(lst);
         }
-
-
+        
         [HttpPost]
-        public ActionResult AddCat(catTicket model)
+        public ActionResult AddEstadoTicket(EstadoTicket model)
         {
             if (!ModelState.IsValid)
             {
@@ -41,42 +39,40 @@ namespace Analisis2Grupo9.Controllers
 
             using (var db = new analisis2_2022Entities())
             {
-                Categoria_Ticket oCatTicket = new Categoria_Ticket();
-                oCatTicket.codigo = model.Codigo;
+                Estado_Ticket oCatTicket = new Estado_Ticket();
                 oCatTicket.nombre = model.Nombre;
                 oCatTicket.estado = model.Estado;
 
-                db.Categoria_Ticket.Add(oCatTicket);
+                db.Estado_Ticket.Add(oCatTicket);
 
                 db.SaveChanges();
             }
-            return Redirect(Url.Content("~/CatTicket/"));
+            return Redirect(Url.Content("~/EstadoTicket/"));
         }
 
 
         [HttpGet]
-        public ActionResult AddCat()
+        public ActionResult AddEstadoTicket()
         {
             return View();
         }
 
         [HttpGet]
-        public ActionResult Edit(int idCategoriaTicket)
+        public ActionResult Edit(int idEstadoTicket)
         {
-            EditcatTicket model = new EditcatTicket();
+            EditEstadoTicket model = new EditEstadoTicket();
 
             using (var db = new analisis2_2022Entities())
             {
-                var oCatTicket = db.Categoria_Ticket.Find(idCategoriaTicket);
-                model.Nombre = (string)oCatTicket.nombre;
+                var oCatTicket = db.Estado_Ticket.Find(idEstadoTicket);
+                model.Nombre = oCatTicket.nombre;
                 model.Estado = (int)oCatTicket.estado;
-                model.Codigo = (string)oCatTicket.codigo;
             }
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Edit(EditcatTicket model)
+        public ActionResult Edit(EditEstadoTicket model)
         {
             if (!ModelState.IsValid)
             {
@@ -85,16 +81,15 @@ namespace Analisis2Grupo9.Controllers
 
             using (var db = new analisis2_2022Entities())
             {
-                var oCatTicket = db.Categoria_Ticket.Find(model.idCategoriaTicket);
+                var oCatTicket = db.Estado_Ticket.Find(model.idEstadoTicket);
                 oCatTicket.estado = model.Estado;
                 oCatTicket.nombre = model.Nombre;
-                oCatTicket.codigo = model.Codigo;
 
                 db.Entry(oCatTicket).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }
 
-            return Redirect(Url.Content("~/CatTicket/"));
+            return Redirect(Url.Content("~/EstadoTicket/"));
         }
 
         [HttpPost]
@@ -104,7 +99,7 @@ namespace Analisis2Grupo9.Controllers
 
             using (var db = new analisis2_2022Entities())
             {
-                var oCatTicket = db.Categoria_Ticket.Find(Id);
+                var oCatTicket = db.Estado_Ticket.Find(Id);
                 oCatTicket.estado = 3;
                 
 
@@ -114,7 +109,5 @@ namespace Analisis2Grupo9.Controllers
 
             return Content("1");
         }
-
-
     }
 }

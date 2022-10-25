@@ -1,19 +1,19 @@
-﻿@model Analisis2Grupo9.Models.ViewModels.catTicket
+﻿@model Analisis2Grupo9.Models.ViewModels.EstadoTicket
+
 @{
-    ViewBag.Title = "Agregar Categoría";
+    ViewBag.Title = "AddEstadoTicket";
 }
-    
-<h2>@ViewBag.Title </h2>
+
+<h2>Agregar nuevo estado</h2>
 
 <div class="row">
     <div class="col-md-12">
-        @using (Html.BeginForm("AddCat", "CatTicket", FormMethod.Post, new { role = "form", @class = "" }))
+        @using (Html.BeginForm("AddEstadoTicket", "EstadoTicket", FormMethod.Post, new { role = "form", @class = "" }))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationMessage("error", new { role = "form", @class = "text-danger" })
 
-            @Html.LabelFor(d => d.Codigo)
-            @Html.TextBoxFor(d => d.Codigo, new { @class = "form-control" })
+
 
             @Html.LabelFor(d => d.Nombre)
             @Html.TextBoxFor(d => d.Nombre, new { @class = "form-control" })
@@ -23,8 +23,7 @@
             <div style="text-align:left">
                 <input type="button"
                        class="btn btn-danger"
-                       onclick="document.location.href = '@Url.Content("~/CatTicket/Index")'"
-                       value="Cancelar" />
+                       onclick="document.location.href = '@Url.Content("~/EstadoTicket/Index")'" value="Cancelar" />
             </div>
             <div style="text-align: right">
                 <input type="submit" class="btn btn-success" value="Guardar" />
@@ -32,3 +31,4 @@
         }
     </div>
 </div>
+
