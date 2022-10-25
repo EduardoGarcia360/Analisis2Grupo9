@@ -27,7 +27,7 @@
                     <td>@oElemento.Nombre</td>
                     <td>@oElemento.Estado</td>
                     <td>
-                        <input type="button" class="btn btn-danger" onclick="document.location.href= '@Url.Content("~/CatTicket/Edit"+oElemento.Codigo)'" name="name" value="Actualizar" />
+                        <input type="button" class="btn btn-danger" onclick="document.location.href= '@Url.Content("~/CatTicket/Edit/"+oElemento.Codigo)'" name="name" value="Actualizar" />
                     </td>
                     <td>
                         <input type="button" class="btn btn-default" onclick="jsDelete(@oElemento.Codigo);" name="name" value="Eliminar" />
