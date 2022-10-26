@@ -18,6 +18,7 @@ namespace Analisis2Grupo9.Controllers
                 lst = (from e in db.Empleado
                        join p in db.Puesto
                        on e.id_puesto equals p.id_puesto
+                       orderby e.id_empleado
                        select new EmpleadoTableModel
                        {
                            IdEmpleado = e.id_empleado,

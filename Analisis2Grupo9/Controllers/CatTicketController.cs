@@ -19,6 +19,7 @@ namespace Analisis2Grupo9.Controllers
             {
                 lst = (from d in db.Categoria_Ticket
                        where d.estado == 1
+                       orderby d.id_categoria_ticket
                        select new categoriaTicketTableModel
                        {
                            Codigo = d.codigo,

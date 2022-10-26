@@ -19,6 +19,7 @@ namespace Analisis2Grupo9.Controllers
             {
                 lst = (from d in db.Estado_Ticket
                        where d.estado == 1
+                       orderby d.id_estado_ticket
                        select new EstadoTicketTableViewModel
                        {
                            Nombre = d.nombre,

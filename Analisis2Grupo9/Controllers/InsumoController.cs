@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Analisis2Grupo9.Models;
+using Analisis2Grupo9.Models.TableModels;
 using Analisis2Grupo9.Models.TableViewsModels;
 using Analisis2Grupo9.Models.ViewModels;
 
@@ -18,24 +19,30 @@ namespace Analisis2Grupo9.Controllers
 
             using (analisis2_2022Entities db = new analisis2_2022Entities()) {
                 lst = (from d in db.Insumo
-                       where d.id_insumo == 1
+                       join ci in db.Categoria_Insumo
+                            on d.id_categoria_insumo equals ci.id_categoria_insumo
+                       where d.estado == 1
                        orderby d.id_insumo
                        select new InsumosTableViewModel
                        {
+                           id_insumo = d.id_insumo,
+                           id_categoria_insumo = (int)d.id_categoria_insumo,
+                           categoriaNombre = ci.nombre,
                            codigo = d.codigo,
                            descripcion = d.descripcion,
                            cantidad = (int)d.cantidad,
-
+                           estado = (int)d.estado
                        }).ToList();
 
             }
 
             return View(lst);
         }
+
         [HttpGet]
         public ActionResult Add() {
+            ViewBag.categorias = getCategorias();
             return View();
-
         }
 
         [HttpPost]
@@ -43,18 +50,18 @@ namespace Analisis2Grupo9.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.categorias = getCategorias();
                 return View(model);
             }
 
             using (var db = new analisis2_2022Entities())
             {
                 Insumo oInsumo = new Insumo();
-                oInsumo.id_insumo = model.id_insumo;
                 oInsumo.id_categoria_insumo = model.id_categoria_insumo;
                 oInsumo.codigo = model.codigo;
                 oInsumo.descripcion = model.descripcion;
                 oInsumo.cantidad = model.cantidad;
-                oInsumo.estado = model.estado;
+                oInsumo.estado = 1;
 
                 db.Insumo.Add(oInsumo);
 
@@ -80,7 +87,7 @@ namespace Analisis2Grupo9.Controllers
                 model.estado = (int)oInsumo.estado;
 
             }
-
+            ViewBag.categorias = getCategorias();
             return View(model);
         }
 
@@ -89,6 +96,7 @@ namespace Analisis2Grupo9.Controllers
 
             if (!ModelState.IsValid)
             {
+                ViewBag.categorias = getCategorias();
                 return View(model);
             }
 
@@ -115,7 +123,7 @@ namespace Analisis2Grupo9.Controllers
             using (var db = new analisis2_2022Entities())
             {
                 var oInsumo = db.Insumo.Find(id);
-                oInsumo.id_insumo = id;
+                oInsumo.estado = 0;
                 
 
                 db.Entry(oInsumo).State = System.Data.Entity.EntityState.Modified;
@@ -123,6 +131,24 @@ namespace Analisis2Grupo9.Controllers
             }
 
             return Content("1");
+        }
+
+        private List<CategoriaInsumoTableModel> getCategorias()
+        {
+            List<CategoriaInsumoTableModel> lst = null;
+
+            using (var db = new analisis2_2022Entities())
+            {
+                lst = (from c in db.Categoria_Insumo
+                       where c.estado == 1
+                       select new CategoriaInsumoTableModel
+                       {
+                           id_categoria_insumo = c.id_categoria_insumo,
+                           nombre = c.nombre
+                       }).ToList();
+            }
+
+            return lst;
         }
 
     }
