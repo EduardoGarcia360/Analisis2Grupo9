@@ -1,31 +1,65 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    <link rel="stylesheet" 
+          href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" 
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" 
+          crossorigin="anonymous">
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div><br>
-
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Mantenimientos</div>
+            <div class="panel-body" id="feature-content">
+                <div class="col-md-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-body text-center">
+                            <span class="glyphicon glyphicon-check icon-big" aria-hidden="true"></span>
+                            <h3><a class="nav-link active" aria-current="page" href="/Puesto/Index">Puesto</a></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-body text-center">
+                            <span class="glyphicon glyphicon-user icon-big" aria-hidden="true"></span>
+                            <h3><a class="nav-link active" aria-current="page" href="/Empleado/Index">Empleados</a></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Gestiones</div>
+            <div class="panel-body" id="feature-content">
+                <div class="col-md-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-body text-center">
+                            <span class="glyphicon glyphicon-user icon-big" aria-hidden="true"></span>
+                            <h3><a class="nav-link active" aria-current="page" href="/UsuarioTicket/Index">Tickets del Usuario</a></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-body text-center">
+                            <span class="glyphicon glyphicon-ok icon-big" aria-hidden="true"></span>
+                            <h3><a class="nav-link active" aria-current="page" href="/AdminTicket/Index">Administrar Tickets</a></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-body text-center">
+                            <span class="glyphicon glyphicon-cog icon-big" aria-hidden="true"></span>
+                            <h3><a class="nav-link active" aria-current="page" href="/GestionTicket/Index">Gestionar Tickets</a></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

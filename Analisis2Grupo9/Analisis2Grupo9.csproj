@@ -198,7 +198,6 @@
     <Compile Include="Models\ViewModels\EmpleadoViewModel.cs" />
     <Compile Include="Models\ViewModels\PuestoViewModel.cs" />
     <Compile Include="Models\ViewModels\AdminTicketViewModel.cs" />
-    <Compile Include="Models\ViewModels\InsumoViewModel.cs" />
     <Compile Include="Models\ViewModels\catTicket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
