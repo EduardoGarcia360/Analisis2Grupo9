@@ -3,13 +3,13 @@
     ViewBag.Title = "Editar Cat";
 }
 
-<h2>ViewBag.Title </h2>
+<h2>@ViewBag.Title </h2>
 
 <div class="row">
     <div class="col-md-12">
         @using (Html.BeginForm("Edit", "CatTicket", FormMethod.Post, new { role = "form", @class = "" }))
         {
-            @Html.HiddenFor(d=>d.Codigo)
+            @Html.HiddenFor(d=>d.idCategoriaTicket)
             @Html.AntiForgeryToken()
 
             @Html.ValidationMessage("error", new { role = "form", @class = "text-danger" })
@@ -22,6 +22,13 @@
 
             @Html.LabelFor(d => d.Estado)
             @Html.TextBoxFor(d => d.Estado, new { @class = "form-control" })
+           
+        <div style="text-align:left">
+            <input type="button"
+                   class="btn btn-danger"
+                   onclick="document.location.href = '@Url.Content("~/CatTicket/Index")'"
+                   value="Cancelar" />
+        </div>
             <div style="text-align: right">
                 <input type="submit" class="btn btn-success" value="Guardar" />
             </div>
