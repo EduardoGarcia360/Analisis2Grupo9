@@ -3,14 +3,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body style="padding-top: 0px !important; padding-bottom: 0px !important;">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Tickets</a>
+            <a class="navbar-brand" href="/">Tickets</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -37,10 +37,16 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/EstadoTicket/Index">Estado Ticket</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/CategoriaInsumo/Index">Categoria Insumo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/Insumo/Index">Insumo</a>
+                    </li>
                 </ul>
                 <form class="d-flex" role="search">
                     <ul>
-                        <li>@Html.ActionLink("Cerrar Sesion", "Logoff", "Cerrar")</li>
+                        <li class="btn btn-outline-danger">@Html.ActionLink("Cerrar Sesion", "Logoff", "Cerrar")</li>
                     </ul>
                 </form>
             </div>

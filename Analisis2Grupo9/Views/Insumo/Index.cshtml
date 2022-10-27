@@ -1,12 +1,12 @@
 ﻿@model List<Analisis2Grupo9.Models.TableViewsModels.InsumosTableViewModel>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Insumos";
 }
 
-<h2>Lista insumos</h2>
+<h2>@ViewBag.Title</h2>
 <div class="row">
     <div class="col-md-12">
-        <input type="button" class="btn btn-primary" onclick="document.location.href='@Url.Content("~/Insumo/Add")'" value="Nuevo"/>
+        <input type="button" class="btn btn-success" onclick="document.location.href='@Url.Content("~/Insumo/Add")'" value="Nuevo"/>
     </div>
 </div>
 <br/>
@@ -17,25 +17,31 @@
         <table class="table table-bordered">
             <tr>
                 <td>#</td>
-                <td># categoria insumo</td>
+                <td>Categoria</td>
                 <td>Codigo</td>
                 <td>Descripción</td>
                 <td>Cantidad</td>
-                <td>Estado</td>
+                <td>Acciones</td>
             </tr>
 
             @foreach (var oElemento in Model) { 
                 <tr>
 
                     <td>@oElemento.id_insumo</td>
-                    <td>@oElemento.id_categoria_insumo</td>
+                    <td>@oElemento.categoriaNombre</td>
                     <td>@oElemento.codigo</td>
                     <td>@oElemento.descripcion</td>
                     <td>@oElemento.cantidad</td>
-                    <td>@oElemento.estado</td>
                     <td>
-                        <input type="button" onclick="jsDelete(@oElemento.id_insumo)" value="Eliminar" class="btn btn-danger" />
-                        <input type="button" onclick="document.location.href='@Url.Content("~/Insumo/Edit")'" value="Editar" class="btn-default"/>
+                        <input type="button" 
+                               onclick="jsDelete(@oElemento.id_insumo)" 
+                               value="Eliminar" 
+                               class="btn btn-danger" />
+
+                        <input type="button" 
+                               onclick="document.location.href='@Url.Content("~/Insumo/Edit?id="+oElemento.id_insumo)'" 
+                               value="Editar" 
+                               class="btn btn-info"/>
                     </td>
 
                 </tr>
@@ -50,26 +56,15 @@
 
 <script>
     function jsDelete(id) {
-
-        if (confirm("Estas seguro de que lo quieres eliminar ? :O ")) {
-
-            url = "@Url.Content("~/Insumo/Delete")" + "/"id;
-
-            $.post(url function (data) {
+        if (confirm("¿Desea eliminar este registro?")) {
+            url = "@Url.Content("~/Insumo/Delete")" + "?id=" + id;
+            $.post(url, function (data) {
                 if (data == "1") {
-                    document.location.href="@Url.Content("~/Insumo/")"
-
+                    document.location.href = "@Url.Content("~/Insumo/")";
                 } else {
-                    alert('Un error ha ocurrido :/')
+                    alert('Un error ha ocurrido :/');
                 }
-
             })
-
-
         }
-
-
-
     }
-
 </script>

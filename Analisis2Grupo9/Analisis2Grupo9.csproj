@@ -140,6 +140,7 @@
     <Compile Include="Controllers\PuestoController.cs" />
     <Compile Include="Controllers\UsuarioTicketController.cs" />
     <Compile Include="Controllers\CatTicketController.cs" />
+    <Compile Include="Controllers\CategoriaInsumoController.cs" />
     <Compile Include="Filters\VerifySession.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -186,6 +187,7 @@
     <Compile Include="Models\TableModels\PuestoTableModel.cs" />
     <Compile Include="Models\TableModels\TicketTableModel.cs" />
     <Compile Include="Models\TableModels\AdminTicketTableModel.cs" />
+    <Compile Include="Models\TableModels\CategoriaInsumoTableModel.cs" />
     <Compile Include="Models\TableViewsModels\categoriaTicketTableModel.cs" />
     <Compile Include="Models\TableViewsModels\InsumosTableViewModel.cs" />
     <Compile Include="Models\Ticket.cs">
@@ -202,8 +204,8 @@
     <Compile Include="Models\ViewModels\EmpleadoViewModel.cs" />
     <Compile Include="Models\ViewModels\PuestoViewModel.cs" />
     <Compile Include="Models\ViewModels\AdminTicketViewModel.cs" />
-    <Compile Include="Models\ViewModels\InsumoViewModel.cs" />
     <Compile Include="Models\ViewModels\catTicket.cs" />
+    <Compile Include="Models\ViewModels\CategoriaInsumoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -293,8 +295,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Access\Index.cshtml" />
     <Content Include="Views\Insumo\Index.cshtml" />
@@ -318,9 +318,10 @@
     <Content Include="Views\EstadoTicket\Index.cshtml" />
     <Content Include="Views\EstadoTicket\AddEstadoTicket.cshtml" />
     <Content Include="Views\EstadoTicket\Edit.cshtml" />
-    <Content Include="Views\CatTicket\Index.cshtml" />
-    <Content Include="Views\CatTicket\Edit.cshtml" />
     <Content Include="Views\Shared\_LayoutSesion.cshtml" />
+    <Content Include="Views\CategoriaInsumo\Index.cshtml" />
+    <Content Include="Views\CategoriaInsumo\Add.cshtml" />
+    <Content Include="Views\CategoriaInsumo\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

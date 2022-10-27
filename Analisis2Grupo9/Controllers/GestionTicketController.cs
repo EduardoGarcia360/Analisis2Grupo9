@@ -31,6 +31,7 @@ namespace Analisis2Grupo9.Controllers
                            into EmpleadoAsignado
                            from pea in EmpleadoAsignado.DefaultIfEmpty() // left join
                            where t.id_empleado_asignacion == idEmpleadoUsuario
+                           orderby t.id_ticket
                            select new AdminTicketTableModel
                            {
                                IdTicket = t.id_ticket,

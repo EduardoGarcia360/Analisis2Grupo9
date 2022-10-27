@@ -1,9 +1,9 @@
 ﻿@model Analisis2Grupo9.Models.ViewModels.InsumoViewModel
 @{
-    ViewBag.Title = "Agregar insumo";
+    ViewBag.Title = "Agregar Insumo";
 }
 
-<h2>Nuevo insumo</h2>
+<h2>@ViewBag.Title</h2>
 
 <div class="row">
 
@@ -11,14 +11,12 @@
         @using (Html.BeginForm("Add", "Insumo", FormMethod.Post, new { role = "form", @class = "" }))
         {
             @Html.AntiForgeryToken()
-
             @Html.ValidationMessage("Error", new { @class = "text-danger" })
 
-            @Html.LabelFor(d => d.id_insumo)
-            @Html.TextBoxFor(d => d.id_insumo, new { @class = "form-control" })
-
             @Html.LabelFor(d => d.id_categoria_insumo)
-            @Html.TextBoxFor(d => d.id_categoria_insumo, new { @class = "form-control" })
+            @Html.DropDownListFor(d => d.id_categoria_insumo,
+                new SelectList(ViewBag.categorias, "id_categoria_insumo", "nombre"),
+                new { @class = "form-control form-select" })
 
             @Html.LabelFor(d => d.codigo)
             @Html.TextBoxFor(d => d.codigo, new { @class = "form-control" })
@@ -29,12 +27,15 @@
             @Html.LabelFor(d => d.cantidad)
             @Html.TextBoxFor(d => d.cantidad, new { @class = "form-control" })
 
-            @Html.LabelFor(d => d.estado)
-            @Html.TextBoxFor(d => d.estado, new { @class = "form-control" })
-
-
+            <br />
+            <div style="text-align:left">
+                <input type="button"
+                       class="btn btn-danger"
+                       onclick="document.location.href = '@Url.Content("~/Insumo/Index")'"
+                       value="Cancelar" />
+            </div>
             <div style="text-align:right;">
-                <input type="submit" class="btn btn-success" value="Guardar"/>
+                <input type="submit" class="btn btn-success" value="Guardar" />
             </div>
         }
     </div>

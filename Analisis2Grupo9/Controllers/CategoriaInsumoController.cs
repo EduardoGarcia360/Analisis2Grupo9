@@ -18,8 +18,8 @@ namespace Analisis2Grupo9.Controllers
             using (analisis2_2022Entities db = new analisis2_2022Entities())
             {
                 lst = (from d in db.Categoria_Insumo
-                       where d.codigo != ""
-                       orderby d.codigo
+                       where d.estado == 1
+                       orderby d.id_categoria_insumo
                        select new CategoriaInsumoTableModel
                        {
                            id_categoria_insumo = d.id_categoria_insumo,
@@ -37,6 +37,7 @@ namespace Analisis2Grupo9.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Add(CategoriaInsumoViewModel model)
         {
@@ -48,10 +49,9 @@ namespace Analisis2Grupo9.Controllers
             using (var db = new analisis2_2022Entities())
             {
                 Categoria_Insumo cIn = new Categoria_Insumo();
-                cIn.id_categoria_insumo = 1;
                 cIn.nombre = model.nombre;
                 cIn.codigo = model.codigo;
-                cIn.estado = model.estado;
+                cIn.estado = 1;
 
                 db.Categoria_Insumo.Add(cIn);
                 db.SaveChanges();
@@ -69,7 +69,6 @@ namespace Analisis2Grupo9.Controllers
                 var cIn = db.Categoria_Insumo.Find(Id);
                 model.codigo = cIn.codigo;
                 model.nombre = cIn.nombre;
-                model.estado = cIn.estado;
                 model.id_categoria_insumo = cIn.id_categoria_insumo;
             }
 
@@ -87,7 +86,6 @@ namespace Analisis2Grupo9.Controllers
             using (var db = new analisis2_2022Entities())
             {
                 var cIn = db.Categoria_Insumo.Find(model.id_categoria_insumo);
-                cIn.estado = model.estado;
                 cIn.codigo = model.codigo;
                 cIn.nombre = model.nombre;
 

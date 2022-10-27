@@ -1,13 +1,13 @@
 ﻿@model List<Analisis2Grupo9.Models.TableViewsModels.EstadoTicketTableViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Estados Ticket";
 }
 
-<h2>Estados Ticket</h2>
+<h2>@ViewBag.Title</h2>
 <div class="row">
     <div class="col-md-12">
-        <input type="button" class="btn btn-primary" onclick="document.location.href = '@Url.Content("~/EstadoTicket/AddEstadoTicket")'" value="Nuevo" />
+        <input type="button" class="btn btn-success" onclick="document.location.href = '@Url.Content("~/EstadoTicket/AddEstadoTicket")'" value="Nuevo" />
     </div>
 </div>
 <br />
@@ -16,21 +16,19 @@
         <table class="table table-bordered">
             <tr>
                 <td>#</td>
-
                 <td>Nombre</td>
-                <td>Estado</td>
                 <td>Acciones</td>
-
-
             </tr>
             @foreach (var oElemento in Model)
             {
                 <tr>
                     <td>@oElemento.idEstadoTicket</td>
                     <td>@oElemento.Nombre</td>
-                    <td>@oElemento.Estado</td>
                     <td>
-                        <input type="button" class="btn btn-danger" onclick="document.location.href= '@Url.Content("~/EstadoTicket/Edit?IdEstadoTicket="+oElemento.idEstadoTicket)'" value="Actualizar" />
+                        <input type="button" 
+                               class="btn btn-info" 
+                               onclick="document.location.href= '@Url.Content("~/EstadoTicket/Edit?IdEstadoTicket="+oElemento.idEstadoTicket)'" 
+                               value="Actualizar" />
                     </td>
 
                 </tr>

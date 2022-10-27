@@ -20,10 +20,14 @@
 
             @Html.LabelFor(d => d.nombre)
             @Html.TextBoxFor(d => d.nombre, new { @class = "form-control" })
+            <br />
 
-            @Html.LabelFor(d => d.estado)
-            @Html.TextBoxFor(d => d.estado, new { @class = "form-control" })
-
+            <div style="text-align:left">
+                <input type="button"
+                       class="btn btn-danger"
+                       onclick="document.location.href = '@Url.Content("~/CategoriaInsumo/Index")'"
+                       value="Cancelar" />
+            </div>
             <div style="text-align:right">
                 <input type="submit" class="btn btn-success" value="Guardar" />
             </div>

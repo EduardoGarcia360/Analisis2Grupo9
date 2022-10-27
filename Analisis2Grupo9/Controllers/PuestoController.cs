@@ -19,6 +19,7 @@ namespace Analisis2Grupo9.Controllers
             {
                 lst = (from p in db.Puesto
                        where p.estado == 1
+                       orderby p.id_puesto
                       select new PuestoTableModel
                       {
                           IdPuesto = p.id_puesto,

@@ -1,13 +1,13 @@
 ﻿@model List<Analisis2Grupo9.Models.TableViewsModels.categoriaTicketTableModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Categoría Ticket";
 }
 
-<h2>Categorias Ticket</h2>
+<h2>@ViewBag.Title</h2>
 <div class="row">
     <div class="col-md-12">
-        <input type="button" class="btn btn-primary" onclick="document.location.href = '@Url.Content("~/CatTicket/AddCat")'" value="Nuevo" />
+        <input type="button" class="btn btn-success" onclick="document.location.href = '@Url.Content("~/CatTicket/AddCat")'" value="Nuevo" />
     </div>
 </div>
 <br />
@@ -16,7 +16,6 @@
         <table class="table table-bordered">
             <tr>
                 <td>#</td>
-
                 <td>Codigo</td>
                 <td>Nombre</td>
                 <td>Acciones</td>
@@ -29,8 +28,15 @@
                     <td>@oElemento.Codigo</td>
                     <td>@oElemento.Nombre</td>
                     <td>
-                        <input type="button" class="btn btn-danger" onclick="document.location.href= '@Url.Content("~/CatTicket/Edit?idCategoriaTicket="+oElemento.IdCategoriaTicket)'" name="name" value="Actualizar" />
-                        <input type="button" class="btn btn-default" onclick="jsDelete(@oElemento.IdCategoriaTicket);" name="name" value="Eliminar" />
+                        <input type="button"
+                               class="btn btn-danger"
+                               onclick="jsDelete(@oElemento.IdCategoriaTicket);"
+                               value="Eliminar" />
+
+                        <input type="button"
+                               class="btn btn-info"
+                               onclick="document.location.href= '@Url.Content("~/CatTicket/Edit?idCategoriaTicket="+oElemento.IdCategoriaTicket)'"
+                               value="Editar" />
                     </td>
                     
                 </tr>
@@ -41,7 +47,7 @@
 
 <script>
     function jsDelete(idCategoriaTicket) {
-        if (confirm("Seguro de que quieres eliminarlo?") ){
+        if (confirm("¿Desea eliminar este registro?") ){
             url = "@Url.Content("~/CatTicket/Delete")"+"/"+idCategoriaTicket;
             $.post(url, function (data){
                 if (data == "1") {
