@@ -1,10 +1,10 @@
 ﻿@model Analisis2Grupo9.Models.ViewModels.EditEstadoTicket
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar Estado Ticket";
 }
 
-<h2>Editar Estado</h2>
+<h2>@ViewBag.Title</h2>
 
 
 <div class="row">
@@ -19,13 +19,12 @@
             @Html.LabelFor(d => d.Nombre)
             @Html.TextBoxFor(d => d.Nombre, new { @class = "form-control" })
 
-            @Html.LabelFor(d => d.Estado)
-            @Html.TextBoxFor(d => d.Estado, new { @class = "form-control" })
+            <br />
 
             <div style="text-align:left">
                 <input type="button"
                        class="btn btn-danger"
-                       onclick="document.location.href = '@Url.Content("~/CatTicket/Index")'"
+                       onclick="document.location.href = '@Url.Content("~/EstadoTicket/Index")'"
                        value="Cancelar" />
             </div>
             <div style="text-align: right">

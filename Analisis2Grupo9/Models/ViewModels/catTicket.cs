@@ -15,9 +15,6 @@ namespace Analisis2Grupo9.Models.ViewModels
         [Required]
         [Display(Name = "Nombre categoría")]
         public string Nombre { get; set; }
-        [Required]
-        [Display(Name = "Estado categoría")]
-        public int? Estado { get; set; }
     }
 
     public class EditcatTicket
@@ -32,25 +29,5 @@ namespace Analisis2Grupo9.Models.ViewModels
         [Required]
         [Display(Name = "Nombre categoría")]
         public string Nombre { get; set; }
-        [Required]
-        [Display(Name = "Estado categoría")]
-        public int Estado { get; set; }
-    }
-
-    public class IdCatTicket
-    {
-
-        public int idCategoriaTicket { get; set; }
-
-
-        [Required]
-        [Display(Name = "Codigo categoría ticket")]
-        public string Codigo { get; set; }
-        [Required]
-        [Display(Name = "Nombre categoría")]
-        public string Nombre { get; set; }
-        [Required]
-        [Display(Name = "Estado categoría")]
-        public int Estado { get; set; }
     }
 }

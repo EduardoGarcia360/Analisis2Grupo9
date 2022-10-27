@@ -42,7 +42,7 @@ namespace Analisis2Grupo9.Controllers
             {
                 Estado_Ticket oCatTicket = new Estado_Ticket();
                 oCatTicket.nombre = model.Nombre;
-                oCatTicket.estado = model.Estado;
+                oCatTicket.estado = 1;
 
                 db.Estado_Ticket.Add(oCatTicket);
 
@@ -67,7 +67,6 @@ namespace Analisis2Grupo9.Controllers
             {
                 var oCatTicket = db.Estado_Ticket.Find(idEstadoTicket);
                 model.Nombre = oCatTicket.nombre;
-                model.Estado = (int)oCatTicket.estado;
             }
             return View(model);
         }
@@ -83,7 +82,6 @@ namespace Analisis2Grupo9.Controllers
             using (var db = new analisis2_2022Entities())
             {
                 var oCatTicket = db.Estado_Ticket.Find(model.idEstadoTicket);
-                oCatTicket.estado = model.Estado;
                 oCatTicket.nombre = model.Nombre;
 
                 db.Entry(oCatTicket).State = System.Data.Entity.EntityState.Modified;
@@ -101,7 +99,7 @@ namespace Analisis2Grupo9.Controllers
             using (var db = new analisis2_2022Entities())
             {
                 var oCatTicket = db.Estado_Ticket.Find(Id);
-                oCatTicket.estado = 3;
+                oCatTicket.estado = 0;
                 
 
                 db.Entry(oCatTicket).State = System.Data.Entity.EntityState.Modified;

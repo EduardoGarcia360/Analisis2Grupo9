@@ -16,19 +16,14 @@
         <table class="table table-bordered">
             <tr>
                 <td>#</td>
-
                 <td>Nombre</td>
-                <td>Estado</td>
                 <td>Acciones</td>
-
-
             </tr>
             @foreach (var oElemento in Model)
             {
                 <tr>
                     <td>@oElemento.idEstadoTicket</td>
                     <td>@oElemento.Nombre</td>
-                    <td>@oElemento.Estado</td>
                     <td>
                         <input type="button" 
                                class="btn btn-info" 
