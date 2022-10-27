@@ -52,36 +52,56 @@
                        onclick="document.location.href = '@Url.Content("~/GestionTicket/")'"
                        value="Cancelar" />
             </div>
+
+
+
+
+
+        }
+
+        @if (Model.idEstadoTicket == 2)
+        {
             <div style="text-align:right">
                 <input type="submit"
                        class="btn btn-info"
                        value="Guardar" />
             </div>
-
-            <h2>Seguimientos</h2>
-            <div class="row">
-                <div class="col-lg-12">
-                    <table class="table table-bordered">
-                        <tr>
-                            <th>Fecha Seguimiento</th>
-                            <th>Descripción</th>
-                            <th>Fecha Hora Inicio</th>
-                            <th>Fecha Hora Fin</th>
-                        </tr>
-
-                        @foreach (var item in ViewBag.seguimientos)
-                        {
-                            <tr>
-                                <th>@item.fecha_seguimiento</th>
-                                <th>@item.descripcion_seguimiento</th>
-                                <th>@item.fecha_inicio_seguimiento</th>
-                                <th>@item.fecha_fin_seguimiento</th>
-                            </tr>
-                        }
-                    </table>
-                </div>
-            </div>
         }
+
+        @if (ViewBag.seguimientos != null && Model.idEstadoTicket == 2)
+        {
+
+            <input type="button"
+                   value="Finalizar"
+                   class="btn btn-success"
+                   onclick="jsDelete(@Model.idTicket)" />
+
+        }
+
+        <h2>Seguimientos</h2>
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Fecha Seguimiento</th>
+                        <th>Descripción</th>
+                        <th>Fecha Hora Inicio</th>
+                        <th>Fecha Hora Fin</th>
+                    </tr>
+
+                    @foreach (var item in ViewBag.seguimientos)
+                    {
+                        <tr>
+                            <th>@item.fecha_seguimiento</th>
+                            <th>@item.descripcion_seguimiento</th>
+                            <th>@item.fecha_inicio_seguimiento</th>
+                            <th>@item.fecha_fin_seguimiento</th>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+
     </div>
 </div>
 <script>
@@ -91,4 +111,18 @@
         format: 'DD/MM/YYYY hh:mm:ss A',
         sideBySide: true
     });
+
+    function jsDelete(idTicket) {
+        if (confirm("Desea Finalizar el ticket?")) {
+            url = "@Url.Content("~/GestionTicket/Finalizar")" + "?idTicket=" + idTicket;
+
+            $.post(url, function (data) {
+                if (data == "1") {
+                    document.location.href = "@Url.Content("~/GestionTicket/Index")";
+                } else {
+                    alert("Error");
+                }
+            })
+        }
+    }
 </script>

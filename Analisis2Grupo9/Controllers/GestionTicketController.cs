@@ -67,6 +67,7 @@ namespace Analisis2Grupo9.Controllers
                 model.idTicketMostrar = toTicket.id_ticket;
                 model.TituloTicket = toTicket.titulo;
                 model.DescripcionTicket = toTicket.descripcion;
+                model.idEstadoTicket = (int)toTicket.id_estado_ticket;
             }
 
             return View(model);
@@ -119,6 +120,23 @@ namespace Analisis2Grupo9.Controllers
             }
 
             return ticketSeguimiento;
+        }
+
+        [HttpPost]
+        public ActionResult Finalizar(int idTicket)
+        {
+            using (var db = new analisis2_2022Entities())
+            {
+                var oPuesto = db.Ticket.Find(idTicket);
+
+                oPuesto.id_estado_ticket = 3;
+
+
+                db.Entry(oPuesto).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+
+            return Content("1");
         }
     }
 }

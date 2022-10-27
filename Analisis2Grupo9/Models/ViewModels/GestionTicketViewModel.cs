@@ -37,5 +37,6 @@ namespace Analisis2Grupo9.Models.ViewModels
 
         [Display(Name = "Fecha Fin")]
         public DateTime HoraFinal { get; set; }
+        public int idEstadoTicket { get; set; }
     }
 }
