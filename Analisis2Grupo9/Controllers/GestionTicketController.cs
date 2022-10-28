@@ -120,7 +120,7 @@ namespace Analisis2Grupo9.Controllers
                     ).ToList();
             }
 
-            return ticketSeguimiento;
+            return ticketSeguimiento.Count() > 0 ? ticketSeguimiento : null;
         }
 
         [HttpPost]

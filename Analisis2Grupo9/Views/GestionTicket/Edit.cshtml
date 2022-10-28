@@ -45,41 +45,36 @@
                 </div>
             </div>
             <br />
+            <div class="row">
+                <div class="col" style="text-align:left">
+                    <input type="button"
+                           class="btn btn-danger"
+                           onclick="document.location.href = '@Url.Content("~/GestionTicket/")'"
+                           value="Cancelar" />
+                </div>
 
-        }
-        <div class="row">
-            <div class="col" style="text-align:left">
-                <input type="button"
-                       class="btn btn-danger"
-                       onclick="document.location.href = '@Url.Content("~/GestionTicket/")'"
-                       value="Cancelar" />
-            </div>
-            <div class="col" style="text-align:center">
                 @if (ViewBag.seguimientos != null && Model.idEstadoTicket == 2)
                 {
-
-                    <input type="button"
-                           value="Finalizar"
-                           class="btn btn-success"
-                           onclick="jsDelete(@Model.idTicket)" />
-
+                    <div class="col" style="text-align:center">
+                        <input type="button"
+                               value="Finalizar"
+                               class="btn btn-success"
+                               onclick="jsDelete(@Model.idTicket)" />
+                    </div>
                 }
-            </div>
-            <div class="col" style="text-align:right">
+
                 @if (Model.idEstadoTicket == 2)
                 {
-                    <div style="text-align:right">
-                        <input type="submit"
-                               class="btn btn-info"
-                               value="Guardar" />
+                    <div class="col" style="text-align:right">
+                        <div style="text-align:right">
+                            <input type="submit"
+                                   class="btn btn-info"
+                                   value="Guardar" />
+                        </div>
                     </div>
                 }
             </div>
-        </div>
-
-       
-
-      
+        }
 
         <h2>Seguimientos</h2>
         <div class="row">
@@ -91,15 +86,17 @@
                         <th>Fecha Hora Inicio</th>
                         <th>Fecha Hora Fin</th>
                     </tr>
-
-                    @foreach (var item in ViewBag.seguimientos)
+                    @if (ViewBag.seguimientos != null)
                     {
-                        <tr>
-                            <th>@item.fecha_seguimiento</th>
-                            <th>@item.descripcion_seguimiento</th>
-                            <th>@item.fecha_inicio_seguimiento</th>
-                            <th>@item.fecha_fin_seguimiento</th>
-                        </tr>
+                        foreach (var item in ViewBag.seguimientos)
+                        {
+                            <tr>
+                                <th>@item.fecha_seguimiento</th>
+                                <th>@item.descripcion_seguimiento</th>
+                                <th>@item.fecha_inicio_seguimiento</th>
+                                <th>@item.fecha_fin_seguimiento</th>
+                            </tr>
+                        }
                     }
                 </table>
             </div>
@@ -128,4 +125,6 @@
             })
         }
     }
+
+
 </script>
