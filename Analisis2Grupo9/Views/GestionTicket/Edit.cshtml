@@ -46,37 +46,40 @@
             </div>
             <br />
 
-            <div style="text-align:left">
+        }
+        <div class="row">
+            <div class="col" style="text-align:left">
                 <input type="button"
                        class="btn btn-danger"
                        onclick="document.location.href = '@Url.Content("~/GestionTicket/")'"
                        value="Cancelar" />
             </div>
+            <div class="col" style="text-align:center">
+                @if (ViewBag.seguimientos != null && Model.idEstadoTicket == 2)
+                {
 
+                    <input type="button"
+                           value="Finalizar"
+                           class="btn btn-success"
+                           onclick="jsDelete(@Model.idTicket)" />
 
-
-
-
-        }
-
-        @if (Model.idEstadoTicket == 2)
-        {
-            <div style="text-align:right">
-                <input type="submit"
-                       class="btn btn-info"
-                       value="Guardar" />
+                }
             </div>
-        }
+            <div class="col" style="text-align:right">
+                @if (Model.idEstadoTicket == 2)
+                {
+                    <div style="text-align:right">
+                        <input type="submit"
+                               class="btn btn-info"
+                               value="Guardar" />
+                    </div>
+                }
+            </div>
+        </div>
 
-        @if (ViewBag.seguimientos != null && Model.idEstadoTicket == 2)
-        {
+       
 
-            <input type="button"
-                   value="Finalizar"
-                   class="btn btn-success"
-                   onclick="jsDelete(@Model.idTicket)" />
-
-        }
+      
 
         <h2>Seguimientos</h2>
         <div class="row">

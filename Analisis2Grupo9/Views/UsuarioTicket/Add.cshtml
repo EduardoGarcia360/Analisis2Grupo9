@@ -28,18 +28,24 @@
             @Html.TextAreaFor(d => d.Descripcion, new { @class = "form-control" })
             @Html.ValidationMessage("Descripcion", new { @class = "text-danger" })
             <br />
+            <div class="row">
+                <div class="col" style="text-align:left">
+                    <input type="button"
+                           class="btn btn-danger"
+                           onclick="document.location.href = '@Url.Content("~/UsuarioTicket/")'"
+                           value="Cancelar" />
+                </div>
+                <div class="col">
+                    
+                </div>
+                <div class="col" style="text-align:right">
+                    <input type="submit"
+                           class="btn btn-success"
+                           value="Guardar" />
+                </div>
+            </div>
 
-            <div style="text-align:left">
-                <input type="button"
-                       class="btn btn-danger"
-                       onclick="document.location.href = '@Url.Content("~/UsuarioTicket/")'"
-                       value="Cancelar" />
-            </div>
-            <div style="text-align:right">
-                <input type="submit"
-                       class="btn btn-success"
-                       value="Guardar" />
-            </div>
+            
         }
     </div>
 </div>

@@ -13,7 +13,7 @@
             @Html.ValidationMessage("error", new { @class = "text-danger" })
 
             @Html.LabelFor(d => d.IdPuesto)
-            @Html.DropDownListFor(d => d.IdPuesto, 
+            @Html.DropDownListFor(d => d.IdPuesto,
                 new SelectList(ViewBag.puestos, "IdPuesto", "Nombre"),
                 new { @class = "form-control form-select" })
             @Html.ValidationMessage("Puesto", new { @class = "text-danger" })
@@ -43,17 +43,21 @@
             @Html.TextBoxFor(d => d.Password, new { @class = "form-control" })
             @Html.ValidationMessage("Contraseña", new { @class = "text-danger" })
             <br />
-
-            <div style="text-align:left">
-                <input type="button"
-                       class="btn btn-danger"
-                       onclick="document.location.href = '@Url.Content("~/Empleado/")'"
-                       value="Cancelar" />
-            </div>
-            <div style="text-align:right">
-                <input type="submit"
-                       class="btn btn-success"
-                       value="Guardar" />
+            <div class="row">
+                <div class="col" style="text-align:left">
+                    <input type="button"
+                           class="btn btn-danger"
+                           onclick="document.location.href = '@Url.Content("~/Empleado/")'"
+                           value="Cancelar" />
+                </div>
+                <div class="col">
+                    
+                </div>
+                <div class="col" style="text-align:right">
+                    <input type="submit"
+                           class="btn btn-success"
+                           value="Guardar" />
+                </div>
             </div>
         }
     </div>

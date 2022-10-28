@@ -23,16 +23,21 @@
             @Html.ValidationMessage("Nombre", new { @class = "text-danger" })
             <br />
 
-            <div style="text-align:left">
-                <input type="button"
-                       class="btn btn-danger"
-                       onclick="document.location.href = '@Url.Content("~/Puesto/Index")'"
-                       value="Cancelar" />
-            </div>
-            <div style="text-align:right">
-                <input type="submit"
-                       class="btn btn-info"
-                       value="Actualizar" />
+            <div class="row">
+                <div class="col" style="text-align:left">
+                    <input type="button"
+                           class="btn btn-danger"
+                           onclick="document.location.href = '@Url.Content("~/Puesto/Index")'"
+                           value="Cancelar" />
+                </div>
+                <div class="col">
+                    
+                </div>
+                <div class="col" style="text-align:right">
+                    <input type="submit"
+                           class="btn btn-info"
+                           value="Actualizar" />
+                </div>
             </div>
         }
     </div>

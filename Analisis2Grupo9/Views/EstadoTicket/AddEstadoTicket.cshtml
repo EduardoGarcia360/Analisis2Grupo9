@@ -19,13 +19,18 @@
             @Html.TextBoxFor(d => d.Nombre, new { @class = "form-control" })
 
             <br />
-            <div style="text-align:left">
-                <input type="button"
-                       class="btn btn-danger"
-                       onclick="document.location.href = '@Url.Content("~/EstadoTicket/Index")'" value="Cancelar" />
-            </div>
-            <div style="text-align: right">
-                <input type="submit" class="btn btn-success" value="Guardar" />
+            <div class="row">
+                <div class="col" style="text-align:left">
+                    <input type="button"
+                           class="btn btn-danger"
+                           onclick="document.location.href = '@Url.Content("~/EstadoTicket/Index")'" value="Cancelar" />
+                </div>
+                <div class="col">
+                    
+                </div>
+                <div class="col" style="text-align:right">
+                    <input type="submit" class="btn btn-success" value="Guardar" />
+                </div>
             </div>
         }
     </div>

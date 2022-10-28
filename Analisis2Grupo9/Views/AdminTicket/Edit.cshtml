@@ -43,18 +43,24 @@
                 new { @class = "form-control form-select" })
             @Html.ValidationMessage("Empleado Asignacion", new { @class = "text-danger" })
             <br />
+            <div class="row">
+                <div class="col" style="text-align:left">
+                    <input type="button"
+                           class="btn btn-danger"
+                           onclick="document.location.href = '@Url.Content("~/AdminTicket/")'"
+                           value="Cancelar" />
+                </div>
+                <div class="col">
+                    
+                </div>
+                <div class="col" style="text-align:right">
+                    <input type="submit"
+                           class="btn btn-info"
+                           value="Asignar" />
+                </div>
+            </div>
 
-            <div style="text-align:left">
-                <input type="button"
-                       class="btn btn-danger"
-                       onclick="document.location.href = '@Url.Content("~/AdminTicket/")'"
-                       value="Cancelar" />
-            </div>
-            <div style="text-align:right">
-                <input type="submit"
-                       class="btn btn-info"
-                       value="Asignar" />
-            </div>
+           
         }
     </div>
 </div>
